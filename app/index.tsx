@@ -1,15 +1,20 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { useRouter } from 'expo-router';
 
-export default function Index() {
+const index = () => {
+
+  const router = useRouter();
+  //@ts-ignore
+router.replace('/(tabs)/index');
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <View>
+      <Text>index</Text>
     </View>
-  );
+  )
 }
+
+export default index
+
+const styles = StyleSheet.create({})
