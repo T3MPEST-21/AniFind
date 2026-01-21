@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff33ff",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#121216",
+                        "surface": "#1e1e24",
+                        "border-neon": "#3d1c3d",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(255, 51, 255, 0.2);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ff33ff;
+            border-radius: 10px;
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<!-- Sticky Top Header -->
+<div class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-white/10">
+<div class="flex items-center p-4 justify-between max-w-md mx-auto">
+<div class="flex items-center gap-3">
+<div class="size-10 flex items-center justify-center rounded-full bg-surface border border-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-white">arrow_back_ios_new</span>
+</div>
+<div>
+<h2 class="text-white text-base font-bold leading-tight tracking-tight">Jujutsu Kaisen</h2>
+<p class="text-primary text-[10px] font-bold uppercase tracking-widest">Episode 20 • 14:24</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="size-10 flex items-center justify-center rounded-full bg-surface border border-white/5 text-white">
+<span class="material-symbols-outlined" style="font-size: 20px;">bookmark</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-full bg-surface border border-white/5 text-white">
+<span class="material-symbols-outlined" style="font-size: 20px;">share</span>
+</button>
+</div>
+</div>
+</div>
+<main class="max-w-md mx-auto pb-24">
+<!-- Media Player / Hero Still -->
+<div class="p-4">
+<div class="relative flex items-center justify-center bg-black bg-cover bg-center aspect-video rounded-xl overflow-hidden neon-glow ring-1 ring-primary/30" data-alt="Cinematic still of Gojo Satoru performing Hollow Purple technique" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTUrKFUHebnO1nbVigbD02ICnN6Wnx4I9Lc4myvujufAeBAdUdQBRS-65gI1PQ1Q_X5lQ0N9yemHsGzVjckEeoPAK9pIlnCJKy6TnHTzt7l6Shx_BYqAotXKPxNAGYGs-13YGg9N3zlYQDaV0t7ao7boEVXgWI52tzwvOdcGnp756iDJ-2Pal-tm36PW_sCw66pCDooBurkDLYGlL5wtzzYOxuDbCr3HW0zXgx4X-vrOhEhlF41AE1tINJHPbz-r1_IDiRYgw_aH8");'>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<button class="z-10 flex items-center justify-center rounded-full size-14 bg-primary/20 backdrop-blur-md border border-primary/50 text-white hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div class="absolute inset-x-0 bottom-0 px-4 py-4">
+<div class="flex h-1.5 items-center justify-center mb-2">
+<div class="h-1 flex-[0.6] rounded-full bg-primary"></div>
+<div class="relative"><div class="absolute -left-1.5 -top-1.5 size-3 rounded-full bg-white shadow-[0_0_8px_#ff33ff]"></div></div>
+<div class="h-1 flex-[0.4] rounded-full bg-white/20"></div>
+</div>
+<div class="flex items-center justify-between">
+<p class="text-white text-[10px] font-bold tabular-nums">14:24</p>
+<p class="text-white/60 text-[10px] font-bold tabular-nums">23:40</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Quote Card -->
+<div class="px-4 mb-6">
+<div class="bg-surface border border-border-neon rounded-xl p-5 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined text-6xl">format_quote</span>
+</div>
+<div class="relative z-10">
+<p class="text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Quote of the Scene</p>
+<h3 class="text-white text-xl font-bold leading-snug italic">"Throughout Heaven and Earth, I alone am the honored one."</h3>
+<div class="mt-4 flex items-center gap-2">
+<div class="h-[1px] w-8 bg-primary/40"></div>
+<p class="text-white/50 text-xs font-medium">Satoru Gojo</p>
+</div>
+</div>
+<div class="absolute bottom-0 right-0 w-24 h-24 bg-primary/5 blur-[40px] rounded-full"></div>
+</div>
+</div>
+<!-- Tabs Navigation -->
+<div class="sticky top-[72px] z-40 bg-background-dark/95 backdrop-blur-sm px-4">
+<div class="flex border-b border-white/5 gap-8">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-white pb-3 pt-4 px-1" href="#">
+<p class="text-sm font-bold tracking-wide">Discussions</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-white/40 pb-3 pt-4 px-1 hover:text-white/60 transition-colors" href="#">
+<p class="text-sm font-bold tracking-wide">Submissions</p>
+<span class="absolute -top-1 -right-2 flex h-4 w-4">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-20"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-primary text-[8px] items-center justify-center text-white font-black">3</span>
+</span>
+</a>
+</div>
+</div>
+<!-- Section Header -->
+<div class="flex items-center justify-between px-4 pt-6 pb-2">
+<h3 class="text-white text-sm font-bold uppercase tracking-widest opacity-60">Community Intel</h3>
+<div class="flex gap-1">
+<span class="size-1 rounded-full bg-primary/40"></span>
+<span class="size-1 rounded-full bg-primary/40"></span>
+<span class="size-1 rounded-full bg-primary"></span>
+</div>
+</div>
+<!-- Threaded Comments -->
+<div class="px-4 space-y-4">
+<!-- Comment 1 -->
+<div class="group">
+<div class="flex gap-3">
+<div class="shrink-0">
+<div class="size-10 rounded-lg bg-gradient-to-br from-primary to-purple-800 p-[1px]">
+<div class="size-full rounded-[7px] bg-surface flex items-center justify-center overflow-hidden">
+<img class="object-cover size-full" data-alt="User avatar male" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB04gFOHS6hkza2TiPmK4GBISkUCcqZzIOQv2WZJxYNlcwlt1wF98kGzSMQreNtIKsHV4cjyGv7Ki8-_Y3kXe5Yy9Dy-U6V4zNnzCT55PBgE840wQmNfDK17VcJXDTf-jqeac-YdHCHi7BAFzHAsp-r0QZFDXa9jWHMd4T6VRNFduPoDQp5nOZNBbexTG4u_sL31C9hMT-Ytwl0OUpV2Zww9wmN-vATkTIuuIp2DFMC4yM4Q7CGihDfR6eGpZRz8IMrwo6cTdropIg"/>
+</div>
+</div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-white text-xs font-bold">Zenith_Maps</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-primary/10 text-primary text-[8px] font-black border border-primary/20">ELITE</span>
+</div>
+<span class="text-white/30 text-[10px]">2h ago</span>
+</div>
+<div class="bg-surface border border-white/5 rounded-xl rounded-tl-none p-4">
+<p class="text-white/80 text-sm leading-relaxed">
+                                The frame rate during the purple convergence is actually insane. Mappa really went all out on the fluid dynamics here. Does anyone know the key animator for this cut?
+                            </p>
+</div>
+<div class="flex items-center gap-4 px-1">
+<button class="flex items-center gap-1.5 group/btn">
+<span class="material-symbols-outlined text-lg text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-white/60">98% Accuracy</span>
+</button>
+<button class="flex items-center gap-1.5 group/btn">
+<span class="material-symbols-outlined text-lg text-white/30 group-hover/btn:text-primary transition-colors">favorite</span>
+<span class="text-[10px] font-bold text-white/40 group-hover/btn:text-white">1.2k</span>
+</button>
+<button class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg text-white/30">mode_comment</span>
+<span class="text-[10px] font-bold text-white/40">24</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Nested Reply -->
+<div class="ml-10 mt-4 border-l-2 border-primary/10 pl-4">
+<div class="flex gap-3">
+<div class="shrink-0">
+<div class="size-8 rounded-lg bg-surface border border-white/5 flex items-center justify-center overflow-hidden">
+<img class="object-cover size-full" data-alt="User avatar female" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_MBf-zUsbW1Y1n5K2byuFFM1vzQhEGaZqA8dZZP2xe5NekN0pWMzTdIPQvjmz69bQmyTJqiVnnp_j7htp9Zm-8Q7yuiLX0vcRFmciC4Hdef9Qs7oqF3Yj9jO0-7lg7JfKFHSFpMp6y9dK62-gudA2yGppfPCMaUvNSLUGFEQ06r7C3pOtTzlSCT6Zy4KR-B1ijpYkXzLuTNqtUXlilSU_ZnfSVrXPLdu4Ii5mpASEPLgPJ7-2OGnQNANmeDNakp3fwTK4hXvKyJE"/>
+</div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-white text-xs font-bold">Sakura_Cuts</span>
+<span class="text-white/30 text-[10px]">1h ago</span>
+</div>
+<div class="bg-surface border border-white/5 rounded-xl rounded-tl-none p-3">
+<p class="text-white/70 text-xs leading-relaxed">
+                                    I believe it was Nozomu Abe! He's famous for these high-density particle effects.
+                                </p>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-primary text-[10px] font-bold">Upvote Accuracy</button>
+<span class="text-white/10">•</span>
+<button class="text-white/40 text-[10px] font-bold">Reply</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Comment 2 -->
+<div class="flex gap-3 pt-4">
+<div class="shrink-0">
+<div class="size-10 rounded-lg bg-surface border border-white/5 flex items-center justify-center overflow-hidden">
+<div class="bg-primary/20 size-full flex items-center justify-center">
+<span class="text-primary font-bold text-xs">A</span>
+</div>
+</div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-white text-xs font-bold">AniLover_99</span>
+<span class="text-white/30 text-[10px]">5h ago</span>
+</div>
+<div class="bg-surface border border-white/5 rounded-xl rounded-tl-none p-4">
+<p class="text-white/80 text-sm leading-relaxed">
+                            The way the OST cuts out right before the impact... literal chills. Best usage of silence in the series so far.
+                        </p>
+</div>
+<div class="flex items-center gap-4 px-1">
+<button class="flex items-center gap-1.5 group/btn">
+<span class="material-symbols-outlined text-lg text-white/30">verified</span>
+<span class="text-[10px] font-bold text-white/40">Vote Accuracy</span>
+</button>
+<button class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg text-white/30">favorite</span>
+<span class="text-[10px] font-bold text-white/40">452</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Bar (Bottom Bar) -->
+<div class="fixed bottom-0 inset-x-0 p-4 bg-gradient-to-t from-background-dark via-background-dark to-transparent pt-10">
+<div class="max-w-md mx-auto flex items-center gap-3">
+<div class="flex-1 bg-surface/80 backdrop-blur-md border border-white/10 rounded-full h-12 flex items-center px-4">
+<input class="bg-transparent border-none focus:ring-0 text-sm text-white placeholder:text-white/20 w-full" placeholder="Share your insight..." type="text"/>
+<span class="material-symbols-outlined text-white/20">sentiment_satisfied</span>
+</div>
+<button class="size-12 rounded-full bg-primary flex items-center justify-center text-white shadow-[0_0_20px_rgba(255,51,255,0.4)]">
+<span class="material-symbols-outlined font-bold">send</span>
+</button>
+</div>
+<!-- iOS Home Indicator Safe Area -->
+<div class="h-4"></div>
+</div>
+</body></html>

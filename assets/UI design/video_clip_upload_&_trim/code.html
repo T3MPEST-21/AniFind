@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniFind - Video Clip Upload</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00bfff",
+                        "background-light": "#f1f2f4",
+                        "background-dark": "#18191b",
+                        "surface-dark": "#27282C",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.5rem",
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "neon": "0 0 15px rgba(0, 191, 255, 0.4)",
+                        "inner-glow": "inset 0 0 20px rgba(0, 0, 0, 0.5)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Simulated Waveform Pattern */
+        .waveform-bg {
+            background-image: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 2px,
+                #3f4145 2px,
+                #3f4145 4px
+            );
+        }
+        
+        /* Animated Progress Bar Striping */
+        @keyframes progress-stripes {
+            from { background-position: 1rem 0; }
+            to { background-position: 0 0; }
+        }
+        .animate-stripes {
+            background-image: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.15) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.15) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 75%,
+                transparent
+            );
+            background-size: 1rem 1rem;
+            animation: progress-stripes 1s linear infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-hidden selection:bg-primary selection:text-white">
+<div class="relative flex h-screen w-full flex-col max-w-md mx-auto shadow-2xl overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Background Ambient Glow -->
+<div class="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[150%] h-[50%] bg-primary/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+<!-- Header -->
+<div class="relative z-10 flex items-center justify-between p-4 pt-6">
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-white/5 active:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-800 dark:text-white" style="font-size: 24px;">arrow_back</span>
+</button>
+<h2 class="text-lg font-bold leading-tight tracking-tight uppercase">Upload Clip</h2>
+<div class="size-10"></div> <!-- Spacer for balance -->
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col justify-center px-5 relative z-10 gap-6 overflow-y-auto no-scrollbar pb-24">
+<!-- Video Player Card -->
+<div class="w-full relative group">
+<div class="relative flex items-center justify-center bg-surface-dark aspect-[4/3] rounded-xl overflow-hidden shadow-lg border border-white/5">
+<!-- Video Thumbnail/Preview -->
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Anime scene with a character standing in a neon-lit city street at night" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXnzvwX5F6Sfzz3TlQFvNydzi1ifvaTzYTXwfSeYkyng88yeTY_LhqiuhjhHDQ6qickpRhH7aEktF1ZwLJlm5cmDIrnp-gTlKXuuPJyS89sd2cfJvLl9INw3zXn70Rbpx5ZJxx19jZyXN0pC8NFwYF3PPPt9Fdltr-UlF2I4bsYn2V-15ytYcZ6q2TMscsMA4hcFpPOcD9AdmKrg0UH2qYUCZDKjWkRzUI7muq674eMTNcnVTZaPu8XQV2kgkmQHS3um1lnwNyIUE");'>
+</div>
+<!-- Overlay Gradient for better text visibility -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent"></div>
+<!-- Play Button -->
+<button class="relative z-10 flex shrink-0 items-center justify-center rounded-full size-16 bg-background-dark/60 text-white backdrop-blur-sm border border-white/10 hover:scale-105 transition-transform hover:bg-primary hover:text-black hover:border-primary shadow-xl">
+<span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<!-- Time overlay -->
+<div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-xs font-mono text-white/90 border border-white/5">
+                        00:08
+                    </div>
+</div>
+</div>
+<!-- Trimmer Section -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end mb-1">
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Trim Selection</p>
+<div class="flex gap-1 text-xs font-mono text-primary">
+<span>00:02</span>
+<span class="text-slate-600">/</span>
+<span>00:10</span>
+</div>
+</div>
+<!-- Waveform Slider -->
+<div class="relative h-16 w-full bg-surface-dark rounded-lg border border-white/5 overflow-hidden select-none touch-none shadow-inner-glow">
+<!-- Static Waveform Visual -->
+<div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-8 waveform-bg opacity-30"></div>
+<!-- Active Region (The Clip) -->
+<div class="absolute top-0 bottom-0 left-[20%] right-[30%] bg-primary/10 border-t-2 border-b-2 border-primary/50 backdrop-blur-[1px] group cursor-grab active:cursor-grabbing">
+<!-- Left Handle -->
+<div class="absolute top-0 bottom-0 -left-3 w-6 flex items-center justify-center cursor-ew-resize z-20">
+<div class="h-full w-1.5 bg-primary rounded-l-md shadow-neon"></div>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-surface-dark border border-white/10 text-[10px] px-1.5 py-0.5 rounded text-white font-mono opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">00:02</div>
+</div>
+<!-- Right Handle -->
+<div class="absolute top-0 bottom-0 -right-3 w-6 flex items-center justify-center cursor-ew-resize z-20">
+<div class="h-full w-1.5 bg-primary rounded-r-md shadow-neon"></div>
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-surface-dark border border-white/10 text-[10px] px-1.5 py-0.5 rounded text-white font-mono opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">00:08</div>
+</div>
+<!-- Scrubber Line (Current Position) -->
+<div class="absolute top-0 bottom-0 left-1/3 w-0.5 bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] z-10"></div>
+</div>
+</div>
+<!-- Helper Text -->
+<p class="text-slate-400 dark:text-slate-500 text-xs text-center mt-1">
+                    Keep clip between <span class="text-white font-semibold">2s</span> and <span class="text-white font-semibold">10s</span> for best results.
+                </p>
+</div>
+<!-- Status Indicator -->
+<div class="bg-surface-dark rounded-lg p-4 border border-white/5 flex flex-col gap-3 shadow-md">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary animate-pulse" style="font-size: 18px;">motion_photos_on</span>
+<span class="text-sm font-medium text-white">Extracting frames...</span>
+</div>
+<span class="text-xs font-mono text-primary font-bold">45%</span>
+</div>
+<!-- Progress Bar -->
+<div class="h-1.5 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[45%] rounded-full shadow-neon animate-stripes relative"></div>
+</div>
+</div>
+</div>
+<!-- Footer / Action Area -->
+<div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-background-dark via-background-dark to-transparent z-20">
+<button class="w-full group relative flex items-center justify-center gap-3 bg-surface-dark text-slate-400 font-bold py-4 rounded-xl border border-white/5 overflow-hidden transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:border-primary/50 hover:text-white hover:shadow-neon" disabled="">
+<!-- Enabled State Styles (simulated via class toggling in a real app, visually represented here as disabled but styling prepared for active) -->
+<!-- Use 'bg-primary text-black border-transparent shadow-neon' for active state -->
+<span class="material-symbols-outlined transition-transform group-hover:rotate-12">search</span>
+<span>SCAN VIDEO</span>
+<!-- "Disabled" overlay hint -->
+<span class="absolute right-4 text-[10px] font-normal opacity-50 border border-slate-600 px-1.5 py-0.5 rounded">WAITING</span>
+</button>
+<p class="text-center text-[10px] text-slate-600 mt-3">AniFind AI © 2024</p>
+</div>
+</div>
+</body></html>

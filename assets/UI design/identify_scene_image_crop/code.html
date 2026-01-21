@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Identify Scene Image Crop</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00aaff",
+                        "background-light": "#f7f7f8",
+                        "background-dark": "#101018",
+                        "surface-dark": "#1c1c26",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'crop-focus': '0 0 0 9999px rgba(0, 0, 0, 0.75)',
+                    }
+                },
+            },
+        }
+    </script>
+<!-- Google Fonts: Space Grotesk -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom scrollbar hide for cleaner UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark text-white font-display h-screen w-full overflow-hidden flex flex-col antialiased selection:bg-primary/30">
+<!-- Top App Bar -->
+<header class="flex items-center justify-between px-4 py-2 pt-12 md:pt-4 bg-background-dark z-20 shrink-0">
+<button class="flex items-center justify-center size-10 text-white rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</button>
+<h2 class="text-white text-lg font-bold tracking-tight">Crop Image</h2>
+<button class="flex items-center justify-center h-10 px-2">
+<span class="text-primary text-base font-bold tracking-wide uppercase hover:text-primary/80 transition-colors">Reset</span>
+</button>
+</header>
+<!-- Main Canvas Area -->
+<main class="flex-1 relative w-full h-full flex flex-col justify-center items-center overflow-hidden bg-[#08080c]">
+<!-- Image Container -->
+<div class="relative w-full h-full max-w-lg md:max-w-2xl mx-auto flex items-center justify-center p-6">
+<!-- The Source Image -->
+<!-- Using a cyberpunk/anime style image as placeholder -->
+<div class="relative w-full h-full max-h-[70vh] aspect-[3/4] rounded-lg overflow-hidden ring-1 ring-white/10">
+<img alt="Cyberpunk anime character standing in neon rain with glowing blue accents" class="w-full h-full object-cover" data-alt="Anime character in futuristic setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3bxupKjG6Vl_VJIqdhe_7eeCqRbz4MX6BT9kZ5FyIDD6e70UtskSnI9s1WYyikjdNi7Kdf994MDEM-TFFO00kafqf7Mw6hXSf0xCpeokxkeVCeWkbArKrQp2yfglpA0KWGUOKeHbLMLxPba-iBQi1T0J6mjIp3aBRmybntRa3-BCUeSTyoQl0Nv2_z8y3L-5iYQprCuoYfH5Rc0K6QUZ2nfMBc5Ka-TGg39O5ercrJ6CFZYJKvZVaGi_xyWtgNaildROQd1pRwYw"/>
+<!-- The Crop Interface Layer -->
+<!-- We use a div with a massive box-shadow to create the dimming effect around the crop area -->
+<div class="absolute inset-0 w-full h-full pointer-events-none">
+<!-- Crop Box: Positioned absolutely to simulate a specific crop selection -->
+<!-- This div represents the "active" crop area -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] border-2 border-primary shadow-crop-focus pointer-events-auto cursor-move">
+<!-- Grid Lines (Rule of Thirds) -->
+<div class="absolute inset-0 flex flex-col">
+<div class="flex-1 border-b border-white/20"></div>
+<div class="flex-1 border-b border-white/20"></div>
+<div class="flex-1"></div>
+</div>
+<div class="absolute inset-0 flex">
+<div class="flex-1 border-r border-white/20"></div>
+<div class="flex-1 border-r border-white/20"></div>
+<div class="flex-1"></div>
+</div>
+<!-- Corner Handles -->
+<!-- Top Left -->
+<div class="absolute -top-1 -left-1 w-5 h-5 border-t-4 border-l-4 border-primary rounded-tl-sm"></div>
+<!-- Top Right -->
+<div class="absolute -top-1 -right-1 w-5 h-5 border-t-4 border-r-4 border-primary rounded-tr-sm"></div>
+<!-- Bottom Left -->
+<div class="absolute -bottom-1 -left-1 w-5 h-5 border-b-4 border-l-4 border-primary rounded-bl-sm"></div>
+<!-- Bottom Right -->
+<div class="absolute -bottom-1 -right-1 w-5 h-5 border-b-4 border-r-4 border-primary rounded-br-sm"></div>
+<!-- Edge Handles (Optional for polish) -->
+<div class="absolute top-1/2 -left-1 w-1 h-6 -translate-y-1/2 bg-primary rounded-full"></div>
+<div class="absolute top-1/2 -right-1 w-1 h-6 -translate-y-1/2 bg-primary rounded-full"></div>
+<div class="absolute -top-1 left-1/2 h-1 w-6 -translate-x-1/2 bg-primary rounded-full"></div>
+<div class="absolute -bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Instructional Toast (Static for design) -->
+<div class="absolute top-4 bg-surface-dark/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full shadow-lg z-30 animate-pulse">
+<p class="text-xs text-gray-300 font-medium tracking-wide">Crop out subtitles for better accuracy</p>
+</div>
+</main>
+<!-- Controls & Action Area -->
+<div class="bg-background-dark border-t border-white/5 pb-8 pt-2 z-20 shrink-0">
+<!-- Tool Bar -->
+<div class="flex justify-center items-center gap-12 py-4">
+<button class="group flex flex-col items-center gap-1.5 focus:outline-none">
+<div class="p-2.5 rounded-xl bg-white/5 group-hover:bg-primary/20 transition-all text-gray-300 group-hover:text-primary ring-1 ring-white/10 group-hover:ring-primary/50">
+<span class="material-symbols-outlined text-[24px]">rotate_right</span>
+</div>
+<span class="text-[10px] font-bold tracking-widest text-gray-400 uppercase group-hover:text-primary">Rotate</span>
+</button>
+<button class="group flex flex-col items-center gap-1.5 focus:outline-none">
+<div class="p-2.5 rounded-xl bg-white/5 group-hover:bg-primary/20 transition-all text-gray-300 group-hover:text-primary ring-1 ring-white/10 group-hover:ring-primary/50">
+<span class="material-symbols-outlined text-[24px]">aspect_ratio</span>
+</div>
+<span class="text-[10px] font-bold tracking-widest text-gray-400 uppercase group-hover:text-primary">Ratio</span>
+</button>
+<button class="group flex flex-col items-center gap-1.5 focus:outline-none">
+<div class="p-2.5 rounded-xl bg-white/5 group-hover:bg-primary/20 transition-all text-gray-300 group-hover:text-primary ring-1 ring-white/10 group-hover:ring-primary/50">
+<span class="material-symbols-outlined text-[24px]">flip</span>
+</div>
+<span class="text-[10px] font-bold tracking-widest text-gray-400 uppercase group-hover:text-primary">Flip</span>
+</button>
+</div>
+<!-- Primary Action Button -->
+<div class="px-6 pt-2 pb-2">
+<button class="relative w-full h-14 bg-primary hover:bg-primary/90 active:scale-[0.98] transition-all rounded-xl overflow-hidden group shadow-[0_0_20px_rgba(0,170,255,0.3)]">
+<!-- Tech decoration lines -->
+<div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/30"></div>
+<div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/30"></div>
+<div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/30"></div>
+<div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/30"></div>
+<div class="flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-white">search</span>
+<span class="text-white text-lg font-bold tracking-[0.05em]">IDENTIFY SCENE</span>
+</div>
+</button>
+</div>
+</div>
+</body></html>

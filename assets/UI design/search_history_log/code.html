@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniFind - Search History</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f53df5",
+                        "background-light": "#f8f5f8",
+                        "background-dark": "#221022",
+                        "surface-dark": "#341c34",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<!-- Google Fonts & Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #341c34; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f53df5; 
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-hidden selection:bg-primary selection:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col max-w-md mx-auto shadow-2xl overflow-hidden bg-background-light dark:bg-background-dark border-x border-white/5">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between px-6 pt-12 pb-4 bg-background-light dark:bg-background-dark z-20">
+<h2 class="text-2xl font-bold leading-tight tracking-tight">History</h2>
+<button class="flex items-center justify-center rounded-lg px-3 py-1 text-sm font-bold text-primary hover:bg-primary/10 transition-colors">
+                Clear
+            </button>
+</header>
+<!-- Search Bar -->
+<div class="px-6 pb-2 z-20 bg-background-light dark:bg-background-dark">
+<label class="flex flex-col h-12 w-full">
+<div class="flex w-full flex-1 items-center rounded-xl bg-gray-100 dark:bg-surface-dark transition-all focus-within:ring-2 focus-within:ring-primary/50 overflow-hidden">
+<div class="flex items-center justify-center pl-4 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none bg-transparent border-none focus:border-none focus:outline-none focus:ring-0 text-base font-normal placeholder:text-gray-500 dark:placeholder:text-gray-500 dark:text-white h-full px-3" placeholder="Filter past searches..." value=""/>
+<div class="flex items-center justify-center pr-4 text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</div>
+</div>
+</label>
+</div>
+<!-- Scrollable Content -->
+<main class="flex-1 overflow-y-auto pb-24 relative">
+<!-- Section: TODAY -->
+<div class="sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-6 py-3 border-b border-gray-200 dark:border-white/5">
+<h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Today</h3>
+</div>
+<!-- List Item 1: Scene Match -->
+<div class="group flex items-center gap-4 px-6 py-4 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors cursor-pointer border-b border-gray-200 dark:border-white/5 last:border-0">
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-16 shadow-lg relative overflow-hidden group-hover:scale-105 transition-transform duration-300" data-alt="Purple giant robot glowing eye" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDhhAzfy4gVxvVbgWYEcdlYf-U8d4OUMn_pcX1lPwrfR4EdRohIdj8HnwTAeON-YIuX5YHXeQmqmLc-kb5oNHVV7nx19ThjrBeGd7ecUbF1RBOp8S-midTUXGDKhZIjBAVFAMqOdvDUXIkCBkPHByfWJeYh1Mx_YVvEHPA3WWyO5j5cUwOtiolMS4fNgeEoT6GDERruDZBWsr4X72JmEJN2cCvrl4acviWmle1sylPPxFV3xpF3u5Nc0mGnORIgiAGk3899aRV5Euw");'>
+<!-- Overlay for match confidence if needed -->
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm border border-background-dark">
+                        98%
+                    </div>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<p class="text-base font-bold leading-tight truncate">Neon Genesis Evangelion</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-primary text-xs font-medium bg-primary/10 px-2 py-0.5 rounded-md">Scene Match</span>
+<span class="text-gray-500 text-xs">10:42 AM</span>
+</div>
+</div>
+<div class="shrink-0 text-gray-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+<!-- List Item 2: OST Match -->
+<div class="group flex items-center gap-4 px-6 py-4 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors cursor-pointer border-b border-gray-200 dark:border-white/5 last:border-0">
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-16 shadow-lg relative overflow-hidden group-hover:scale-105 transition-transform duration-300" data-alt="Futuristic spaceship in space" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjhgUQDljXt7W_sbB6A769q6Gf8WpRheaFWFMzwr7eyFu77iK1DrgADWhs0r5fax8kVUunxQmp6W01GAZMcGfmTgQXPWV2YhuctIGD_5OUXsTw08w1LkhERdLIaZA9jNiynDHBW09Hxgvy2xXifFaaJ3NiRSOh6OsFEsAegojfZvspMh-GxNQ1QW1CIFlqyDzGY8tpIqmUwyWkiCnomOXSRoADMXcvahbfr1fImFtcpE19E4SLDKdjkUDfOWTLNxGEfjIEXZGH30U");'>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-blue-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm border border-background-dark">
+                        OST
+                    </div>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<p class="text-base font-bold leading-tight truncate">Cowboy Bebop</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-blue-400 text-xs font-medium bg-blue-500/10 px-2 py-0.5 rounded-md">Music Match</span>
+<span class="text-gray-500 text-xs">09:15 AM</span>
+</div>
+</div>
+<div class="shrink-0 text-gray-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+<!-- Section: YESTERDAY -->
+<div class="sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-6 py-3 mt-2 border-b border-gray-200 dark:border-white/5">
+<h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Yesterday</h3>
+</div>
+<!-- List Item 3: No Match -->
+<div class="group flex items-center gap-4 px-6 py-4 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors cursor-pointer border-b border-gray-200 dark:border-white/5 last:border-0 opacity-75 hover:opacity-100">
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-16 shadow-inner relative overflow-hidden grayscale contrast-125" data-alt="Abstract blurry anime scene" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPqVx_4yKQFRJun6TbKd9AZ-15wUbRqAdYO2-BSggza8ERZAgYhI2Erk348aFj1zcQgb58hNwrVt9-a-nZTI6THPgIHJIzbhzsSJxQDpCbjRP35plclfzF7BM_aZ-2-B5DIIFiRVafQYD6vw4mfRPxNVuS7J5FQcHvm3ZbUlVwLI0ZxdGtEi4fG8_4tnhh6iQCItTqhjojTkrvfxrGqJ5ZDCz2_QzbSXbFgehqH2xJXKXS7th8RDZzEuawJk7w_LfJD_IM1S8uIPY");'>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-white/70 text-2xl">question_mark</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<p class="text-base font-medium text-gray-400 italic leading-tight truncate">No Match Found</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-gray-500 text-xs font-medium border border-gray-700 px-2 py-0.5 rounded-md">Unknown</span>
+<span class="text-gray-500 text-xs">11:20 PM</span>
+</div>
+</div>
+<div class="shrink-0 text-gray-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">refresh</span>
+</div>
+</div>
+<!-- List Item 4: Character Match -->
+<div class="group flex items-center gap-4 px-6 py-4 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors cursor-pointer border-b border-gray-200 dark:border-white/5 last:border-0">
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-16 shadow-lg relative overflow-hidden group-hover:scale-105 transition-transform duration-300" data-alt="Intense anime character face close up" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDXBwBQJP8qb3mBIIuEGo45P-s0Cxq7aRS7yrF_kBLkH9xWnFezbICAkI8lhZ8sWF_EEndJsz82zFHAwPr0Ee-l6Su02XO4k4A7qutf9xu-JgBAnoErNunksxjPs3Oks5dwl5DgexeRhbGjVbwSUcL1OvSOKAq1JD2kygcN2eqYw3QIoTpHbBwGvcmFIYWwiqrrFsChQemssQlmT4S86MpzX_Rh19qIfu49MsodYhLaOxCVyY_Rsp4fiWQsTylRovVvieJl_1DBcY");'>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-green-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm border border-background-dark">
+                        CHAR
+                    </div>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<p class="text-base font-bold leading-tight truncate">Attack on Titan</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-green-400 text-xs font-medium bg-green-500/10 px-2 py-0.5 rounded-md">Eren Yeager</span>
+<span class="text-gray-500 text-xs">4:30 PM</span>
+</div>
+</div>
+<div class="shrink-0 text-gray-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+<!-- List Item 5: Another Scene Match -->
+<div class="group flex items-center gap-4 px-6 py-4 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors cursor-pointer border-b border-gray-200 dark:border-white/5 last:border-0">
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-16 shadow-lg relative overflow-hidden group-hover:scale-105 transition-transform duration-300" data-alt="Cyberpunk city skyline at night" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDLwEcksR1j7o7TyfWiNkp1CqBSnPrTkQ422ANLojUtUdwwAGFrATPqKJvWDU_eFzxNhdDluFMaQVE9o93ivvALOY0cPYHVcTS82a98eOUnOhlZCv0gv_lfSM8kFYCXq4-YfigzzRli5xkRsJZC0cdATXfuXD2Os8mBYXvuTIXhycodO-ZdBMF3M3MxCsHkqsPUsKXJg-dswuH-JHCZDPfZR1m0nSBZVPaLndYnCJT2jWkfuhujvTjXcncHZwWKex_mlAfPMin5aOg");'>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm border border-background-dark">
+                        85%
+                    </div>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0">
+<p class="text-base font-bold leading-tight truncate">Ghost in the Shell</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-primary text-xs font-medium bg-primary/10 px-2 py-0.5 rounded-md">Scene Match</span>
+<span class="text-gray-500 text-xs">2:15 PM</span>
+</div>
+</div>
+<div class="shrink-0 text-gray-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Contextual) -->
+<nav class="absolute bottom-0 w-full bg-background-light dark:bg-background-dark border-t border-white/5 pb-6 pt-3 px-6 flex justify-between items-center z-30">
+<button class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">travel_explore</span>
+<span class="text-[10px] font-medium">Discover</span>
+</button>
+<button class="flex flex-col items-center justify-center -mt-8 size-14 rounded-full bg-primary text-white shadow-[0_0_15px_rgba(245,61,245,0.4)] hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[28px]">search</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined fill-1">history</span>
+<span class="text-[10px] font-medium">History</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</nav>
+</div>
+</body></html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniFind - Scene Match Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#dc1860",
+                        "background-light": "#fafafa",
+                        "background-dark": "#1c1d21",
+                        "accent-cyan": "#1ac9d8",
+                        "card-bg": "#2d2e32"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .hud-scanline {
+            background: linear-gradient(to bottom, rgba(220, 24, 96, 0) 50%, rgba(220, 24, 96, 0.1) 50.5%, rgba(220, 24, 96, 0) 51%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        .glow-magenta {
+            box-shadow: 0 0 15px rgba(220, 24, 96, 0.3);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-white min-h-screen pb-24">
+<!-- Top Navigation -->
+<div class="sticky top-0 z-50 bg-background-dark/80 backdrop-blur-md border-b border-white/10">
+<div class="flex items-center p-4 justify-between max-w-md mx-auto">
+<div class="flex size-10 items-center justify-center rounded-full bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-white">arrow_back_ios_new</span>
+</div>
+<h2 class="text-white text-base font-bold tracking-widest uppercase">Match Found</h2>
+<div class="flex size-10 items-center justify-center rounded-full bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-white">more_horiz</span>
+</div>
+</div>
+</div>
+<main class="max-w-md mx-auto px-4 pt-4">
+<!-- Hero Scene Preview -->
+<div class="relative group overflow-hidden rounded-xl border border-white/10 glow-magenta mb-6">
+<div class="absolute inset-0 hud-scanline z-10"></div>
+<div class="absolute top-3 left-3 z-20 bg-primary px-3 py-1 rounded-full flex items-center gap-1.5 shadow-lg">
+<span class="material-symbols-outlined text-[14px] fill-1">verified</span>
+<span class="text-[12px] font-bold tracking-tight">98% MATCH</span>
+</div>
+<div class="w-full bg-center bg-no-repeat bg-cover aspect-video bg-zinc-800" data-alt="Cinematic anime still featuring neon city lights" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAqcjJOy-WenCBS4v8uiRraoOOhCNqhjzik_erc9hQfVFOOAgTj0zBH3YD7M3rQ4b06hy3Z8PQOb-kVAJ8XeZCatI9S_i6QO1B37Zs8Imx1JlGkTbUYv-zzakBjdCxeMR79QI-Hw_ESePAEM1s-mz0N3szxYo-Noz3_igz8GIsCvpCJj4oWIyE42wfWQDmhHQAqVYoPAZ7_-B4Dd4qvDOMqwZIeleM7sYJT3PL4Hr60vXzOKPHkpNFDGl0R-yz2c0yf18LmIbejC5Y");'>
+</div>
+<div class="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-background-dark to-transparent"></div>
+</div>
+<!-- Anime Info Section -->
+<div class="mb-8">
+<h1 class="text-white text-3xl font-bold leading-none tracking-tighter mb-2">CYBERPUNK: EDGERUNNERS</h1>
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded text-xs font-bold">EPISODE 04</div>
+<div class="flex items-center gap-1 text-accent-cyan font-mono text-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                    12:44 / 24:10
+                </div>
+</div>
+</div>
+<!-- Bento Layout: Characters & OST -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Characters in Frame -->
+<div class="bg-card-bg/40 border border-white/5 rounded-xl p-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-white text-sm font-bold uppercase tracking-widest opacity-60">Detected in Frame</h3>
+<span class="text-xs text-primary font-bold">2 PERS.</span>
+</div>
+<div class="flex gap-4 overflow-x-auto custom-scrollbar pb-1">
+<div class="flex flex-col items-center gap-2 shrink-0">
+<div class="size-16 rounded-full border-2 border-primary p-0.5">
+<img class="w-full h-full object-cover rounded-full" data-alt="Anime character avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVtwnGLroJdNCZ82EQrmPM8ocZf06pzS6p2xix_OSQePrldiGC6KefOyvNAUWZNoRfVbfUp8vnvpus12qs8k1q0Pekvm9_2FFFXcVwDnpbK1fStW1jXoOQ1w0NKVJoZPFMnEegTg5rvYxOxpA0Lq-UwfaDMEXlLSx_ombl4xzzvLNcY_L2Rh-XDH3WH96PAx6IWFWt2ri0WH4h1XlcMjAZK5MRqeNc9Z2S6Nmci6sAK9jeBSHSnT8bYN5ak9Ap9JmIML0ThpZNMoI"/>
+</div>
+<span class="text-[11px] font-medium text-zinc-400">David M.</span>
+</div>
+<div class="flex flex-col items-center gap-2 shrink-0">
+<div class="size-16 rounded-full border-2 border-accent-cyan p-0.5">
+<img class="w-full h-full object-cover rounded-full" data-alt="Anime character avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDNycAQkvJQUW8Xd-vLk0TFRJnQIj-idLEUmQAouxrFR8KncL4XB4rqgnY-QzVGuBG9N0eA23Xxx3pV4c-q9drPjBPej8r6UOwRV8zakyTrPnt-02TjixQMVrmt0m3B-aAPE99qrx5DUtWIj8x6JKYk8YuQlaW1cqrbC8eaCpjso11LxlW8NUvbeeYzSviGn6ziBkHchau5l6p2epypFQLbHIcK0W3C01FlBVqKN8jjCGocyq6QqkZoR-4JNMYFntbRWHLVZ-dvQ8"/>
+</div>
+<span class="text-[11px] font-medium text-zinc-400">Lucy</span>
+</div>
+<div class="flex flex-col items-center gap-2 shrink-0 opacity-40">
+<div class="size-16 rounded-full bg-zinc-800 border-2 border-dashed border-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined">add</span>
+</div>
+<span class="text-[11px] font-medium text-zinc-600">Others</span>
+</div>
+</div>
+</div>
+<!-- OST Section -->
+<div class="bg-card-bg/40 border border-white/5 rounded-xl p-4 flex items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary fill-1">music_note</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-accent-cyan uppercase tracking-widest">Active OST</p>
+<p class="text-white text-base font-bold line-clamp-1">I Really Want to Stay At Your House</p>
+<p class="text-zinc-500 text-xs font-medium">Rosa Walton, Hallie Coggins</p>
+</div>
+</div>
+<button class="size-10 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-lg glow-magenta">
+<span class="material-symbols-outlined text-white fill-1">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Analysis Data (Technical Detail) -->
+<div class="mt-6 space-y-2">
+<div class="flex items-center justify-between text-[11px] border-b border-white/5 pb-2">
+<span class="text-zinc-500 font-medium">Studio</span>
+<span class="text-zinc-200">Studio Trigger</span>
+</div>
+<div class="flex items-center justify-between text-[11px] border-b border-white/5 pb-2">
+<span class="text-zinc-500 font-medium">Source Material</span>
+<span class="text-zinc-200">Video Game</span>
+</div>
+<div class="flex items-center justify-between text-[11px] border-b border-white/5 pb-2">
+<span class="text-zinc-500 font-medium">Original Run</span>
+<span class="text-zinc-200">Sep 13, 2022</span>
+</div>
+</div>
+</main>
+<!-- Floating Action Bar -->
+<div class="fixed bottom-0 inset-x-0 p-4 bg-gradient-to-t from-background-dark via-background-dark/95 to-transparent">
+<div class="max-w-md mx-auto grid grid-cols-4 gap-3">
+<button class="col-span-2 bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg glow-magenta">
+<span class="material-symbols-outlined fill-1">play_circle</span>
+                WATCH SCENE
+            </button>
+<button class="bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold rounded-xl flex items-center justify-center transition-all active:scale-95">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold rounded-xl flex items-center justify-center transition-all active:scale-95">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Video Scanning Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0073e6",
+                        "primary-glow": "#479AFF",
+                        "background-light": "#f7f7f8",
+                        "background-dark": "#111317",
+                        "card-dark": "#23272B",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Static representation of scan line gradient */
+        .scan-line-shadow {
+            box-shadow: 0 0 15px 2px #0073e6, 0 0 30px 5px rgba(0, 115, 230, 0.4);
+        }
+        .tech-grid-bg {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-[#111317] border-x border-white/5 shadow-2xl">
+<!-- Top Navigation Bar -->
+<div class="flex items-center justify-between p-4 z-20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">smart_toy</span>
+<span class="text-xs font-bold tracking-[0.2em] text-white/80 uppercase">AniFind System</span>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 active:bg-white/10 transition-colors text-white/70">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Main Scanning Area -->
+<main class="flex flex-col flex-1 px-4 gap-6 pb-8">
+<!-- Video Container with HUD Overlay -->
+<div class="relative w-full aspect-[4/3] bg-black rounded-lg overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-primary/5 group">
+<!-- Video Content -->
+<div class="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-luminosity" data-alt="Anime style landscape with vibrant clouds and mountains" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbCGUYr-VcZgVujatHw9qKdd2xGPVUjWa4OSyX1SdfE4Wo9BAhzFu4ibBqndooS8zmZXXsAEDLRlD2PdTITac-iFBd9TN61Ri9BHkk75m_XOm6VLG9FfsmIRebBsC5blg_WrrniWTIpK-jpsr8qmtf5c0ZLNcnJyaDf7C1i-GayEDiySyBCSPS1dxtidTzAQselASkHvYTH8xcn4C8bC8rZjdcKOcV2nIfvisn0K4tLkxnOgm3U_M6ArbQpP2x3V633rgxOAmnNeE');"></div>
+<!-- Blue Duotone Overlay map simulation -->
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+<!-- Grid Overlay -->
+<div class="absolute inset-0 tech-grid-bg pointer-events-none"></div>
+<!-- Film Sprockets (Digital Style) -->
+<div class="absolute left-0 top-0 bottom-0 w-8 flex flex-col justify-between py-2 z-10 bg-gradient-to-r from-black/80 to-transparent">
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full ml-3 mb-4"></div>
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full ml-3 mb-4"></div>
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full ml-3 mb-4"></div>
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full ml-3 mb-4"></div>
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full ml-3 mb-4"></div>
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full ml-3 mb-4"></div>
+</div>
+<div class="absolute right-0 top-0 bottom-0 w-8 flex flex-col justify-between py-2 z-10 bg-gradient-to-l from-black/80 to-transparent items-end">
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full mr-3 mb-4"></div>
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full mr-3 mb-4"></div>
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full mr-3 mb-4"></div>
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full mr-3 mb-4"></div>
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full mr-3 mb-4"></div>
+<div class="w-1.5 h-1.5 bg-white/20 rounded-full mr-3 mb-4"></div>
+</div>
+<!-- HUD Corners -->
+<div class="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-primary/80 rounded-tl-sm"></div>
+<div class="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-primary/80 rounded-tr-sm"></div>
+<div class="absolute bottom-3 left-3 w-6 h-6 border-l-2 border-b-2 border-primary/80 rounded-bl-sm"></div>
+<div class="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 border-primary/80 rounded-br-sm"></div>
+<!-- Scanning Line (Static Snapshot) -->
+<div class="absolute top-[40%] left-0 w-full h-[2px] bg-white z-20 scan-line-shadow opacity-90"></div>
+<div class="absolute top-[40%] left-0 w-full h-16 bg-gradient-to-t from-primary/0 to-primary/30 -mt-16 pointer-events-none"></div>
+<!-- HUD Text -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/80 backdrop-blur-md rounded border border-primary/30 shadow-lg flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-[10px] font-mono font-bold tracking-widest text-primary uppercase">Analyzing Frame 1042</span>
+</div>
+</div>
+<!-- Status Indicator -->
+<div class="flex flex-col items-center justify-center gap-2 py-4">
+<div class="relative w-16 h-16 flex items-center justify-center mb-2">
+<!-- Static representation of pulse waves -->
+<div class="absolute inset-0 rounded-full border border-primary/30 scale-125 opacity-40"></div>
+<div class="absolute inset-0 rounded-full border border-primary/60 scale-110 opacity-60"></div>
+<div class="relative w-12 h-12 bg-[#111317] rounded-full flex items-center justify-center border border-primary text-primary shadow-[0_0_20px_rgba(0,115,230,0.3)] z-10">
+<span class="material-symbols-outlined text-[24px]">troubleshoot</span>
+</div>
+</div>
+<h2 class="text-white text-lg font-bold tracking-[0.05em] uppercase leading-tight text-center">Matching Frames...</h2>
+<div class="flex items-center gap-3 w-full max-w-[280px]">
+<span class="text-[10px] font-mono text-primary/70">DB_CONNECT</span>
+<div class="flex-1 h-1 bg-[#23272B] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[72%] shadow-[0_0_8px_#0073e6]"></div>
+</div>
+<span class="text-[10px] font-mono text-white">72%</span>
+</div>
+</div>
+<!-- Results Stream -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-white text-sm font-bold tracking-tight">Characters Detected</h3>
+<div class="flex items-center gap-1.5 px-2 py-1 rounded bg-primary/10 border border-primary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_5px_#4ade80]"></span>
+<span class="text-[10px] font-bold text-green-400 leading-none">2 FOUND</span>
+</div>
+</div>
+<!-- Character Card 1 (High Match) -->
+<div class="group flex items-center gap-4 p-3 bg-card-dark rounded-md border-l-[3px] border-primary relative overflow-hidden transition-all hover:bg-[#2A2E33]">
+<!-- Background Shine Effect -->
+<div class="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-primary/5 to-transparent"></div>
+<!-- Avatar -->
+<div class="relative shrink-0">
+<img class="w-12 h-12 rounded-full object-cover border-2 border-[#111317] ring-1 ring-white/20 z-10 relative" data-alt="Stylized anime character portrait with spiky hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWm99x7QrZzUPyNZX_OKcLCcKXWAXXAegcSbaXFu7UqBsvgQz-lX9Q5vGyIu9-YbWMO43IFZztY0K9QoAAjHyr5qPhuijhs2fmacEZ3-anG21GaapKv9Blo1BQtE_cpLcPjqpoXG-wvRudU1K5nsOzYfrslIvJ7psl1wctxakHrgLC0PgPb2sl3dY-ckwd7DsG1CnDoOFdMDyKv16wSK7TZvd7rn5Z4gNRzC7__ROZ8YO4j01BSde_o7FV09LharOxd90JBaXTWGc"/>
+<!-- Match Badge -->
+<div class="absolute -bottom-1 -right-1 bg-[#111317] rounded-full p-0.5 z-20">
+<span class="material-symbols-outlined text-primary text-[14px] bg-primary/20 rounded-full p-0.5">check</span>
+</div>
+</div>
+<!-- Info -->
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="text-white font-bold text-base leading-tight truncate">Akira Kurusu</div>
+<div class="text-xs text-gray-400 mt-0.5 truncate">Protagonist • Persona 5</div>
+</div>
+<!-- Confidence Score -->
+<div class="flex flex-col items-end justify-center shrink-0">
+<span class="text-white font-mono font-bold text-lg leading-none">98<span class="text-xs text-primary align-top">%</span></span>
+<span class="text-[9px] font-medium text-primary/70 uppercase tracking-wide mt-0.5">Confidence</span>
+</div>
+</div>
+<!-- Character Card 2 (Medium Match) -->
+<div class="group flex items-center gap-4 p-3 bg-card-dark rounded-md border-l-[3px] border-primary/40 relative overflow-hidden transition-all hover:bg-[#2A2E33]">
+<!-- Avatar -->
+<div class="relative shrink-0">
+<img class="w-12 h-12 rounded-full object-cover border-2 border-[#111317] ring-1 ring-white/20 z-10 relative grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all" data-alt="Stylized anime character portrait with long hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVMqRA3NLbEACDrXvPUuvS8f_1zXgCQjH28o2IKaTff7JYjTrYMt6kFKm1RirQ3Y60VxOLl84CI_5nygI7952QOGZDtg5Y18nZ5qqHkIsPGsekCkBY4dLIGRw54BtPO9oDR2R215IFoAm8T0z4h3YhJabrGoHs2Yh72ieq5JjLO71_zkcC7NCDSgdApV0AeLOgNjLTsI0a_VRE_DR0-f6waou2fQRL-ELlTm4r5VWYizkPHyzN1e98DkyCIFYj9sEjcxZVVrWcv4I"/>
+</div>
+<!-- Info -->
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="text-white/90 font-bold text-base leading-tight truncate">Ryuji Sakamoto</div>
+<div class="text-xs text-gray-400 mt-0.5 truncate">Side Character • Phantom Thieves</div>
+</div>
+<!-- Confidence Score -->
+<div class="flex flex-col items-end justify-center shrink-0">
+<span class="text-white/80 font-mono font-bold text-lg leading-none">87<span class="text-xs text-primary/60 align-top">%</span></span>
+<span class="text-[9px] font-medium text-gray-500 uppercase tracking-wide mt-0.5">Confidence</span>
+</div>
+</div>
+<!-- Scanning Placeholder -->
+<div class="flex items-center gap-4 p-3 rounded-md border border-white/5 bg-white/[0.02]">
+<div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-white/20 text-xl animate-pulse">radar</span>
+</div>
+<div class="flex-1 flex flex-col gap-2">
+<div class="h-2.5 w-24 bg-white/10 rounded animate-pulse"></div>
+<div class="h-2 w-16 bg-white/5 rounded animate-pulse"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom fade for infinite scroll feel if needed -->
+<div class="h-6 bg-gradient-to-t from-[#111317] to-transparent pointer-events-none sticky bottom-0"></div>
+</div>
+</body></html>

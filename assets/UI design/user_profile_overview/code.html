@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniFind Profile</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fa38fa",
+                        "background-light": "#f8f5f8",
+                        "background-dark": "#230f23",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen">
+<div class="relative flex h-full w-full flex-col overflow-x-hidden max-w-md mx-auto min-h-screen shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-black/5 dark:border-white/5">
+<div class="w-10">
+<!-- Back button placeholder if needed, empty for now to match main profile view -->
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Profile</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex items-center justify-center text-slate-900 dark:text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+<!-- Profile Header -->
+<div class="flex flex-col items-center pt-6 pb-2 px-4">
+<div class="relative group cursor-pointer">
+<!-- Avatar Glow -->
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-full blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
+<!-- Avatar Image -->
+<div class="relative bg-center bg-no-repeat bg-cover rounded-full h-28 w-28 border-2 border-background-light dark:border-background-dark ring-2 ring-primary/50" data-alt="Anime style avatar of a young cyberpunk character with neon goggles" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDiTI3eWw9cDiIgKMj1AoB1jkTBHVp6C569Lv5jhki-iYciHVCHsmGbcw4mGsCBV8qiGCi7ImM839qhwl7oIgWm_t0WYzGpgMH6scsjtLMFvGxXYuOC__NOLnmhnbLvjhOTcrgxtaNywzymqgsv766ZePDdN1wBw6ydQcGIvIGMa4viLT4uAHWyJbLBKF8VpHzghwQkQESJdkaccDJuoH4atqkyu44_IgreJtDl7hTCLirjeiorcbfZ4EMcmEWp2FNGJGJp2CE26_4");'>
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-background-dark">
+                    PRO
+                </div>
+</div>
+<div class="flex flex-col items-center justify-center mt-4">
+<h1 class="text-2xl font-bold leading-tight tracking-tight text-center text-slate-900 dark:text-white">Akira2049</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mt-1">@akira_finder</p>
+</div>
+</div>
+<!-- Profile Stats -->
+<div class="flex flex-wrap gap-3 px-4 py-4">
+<div class="flex flex-1 flex-col gap-1 rounded-xl bg-white dark:bg-white/5 p-3 items-center text-center border border-slate-200 dark:border-white/5 shadow-sm">
+<p class="text-primary text-xl font-bold leading-tight">245</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wide">Discoveries</p>
+</div>
+<div class="flex flex-1 flex-col gap-1 rounded-xl bg-white dark:bg-white/5 p-3 items-center text-center border border-slate-200 dark:border-white/5 shadow-sm">
+<p class="text-white text-xl font-bold leading-tight">12</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wide">Collections</p>
+</div>
+<div class="flex flex-1 flex-col gap-1 rounded-xl bg-white dark:bg-white/5 p-3 items-center text-center border border-slate-200 dark:border-white/5 shadow-sm">
+<p class="text-white text-xl font-bold leading-tight">42</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wide">Level</p>
+</div>
+</div>
+<!-- Tabs -->
+<div class="sticky top-[60px] z-40 bg-background-light dark:bg-background-dark pt-2 pb-0">
+<div class="flex border-b border-slate-200 dark:border-white/10 px-4 justify-between">
+<button class="flex flex-col items-center justify-center border-b-[3px] border-primary text-slate-900 dark:text-white pb-3 pt-2 flex-1 transition-colors">
+<p class="text-sm font-bold leading-normal tracking-wide">Profile</p>
+</button>
+<button class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 pb-3 pt-2 flex-1 transition-colors">
+<p class="text-sm font-bold leading-normal tracking-wide">History</p>
+</button>
+</div>
+</div>
+<!-- Content Area -->
+<div class="flex flex-col gap-6 pb-24">
+<!-- Favorite Anime Section -->
+<div class="flex flex-col pt-6">
+<div class="flex items-center justify-between px-4 pb-3">
+<h2 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Favorite Anime</h2>
+<a class="text-xs font-bold text-primary hover:text-primary/80 uppercase tracking-wider" href="#">See All</a>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-4 px-4 pb-4 snap-x">
+<!-- Item 1 -->
+<div class="snap-start shrink-0 w-32 flex flex-col gap-2">
+<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden bg-slate-800 shadow-lg group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Cyberpunk Edgerunners anime poster" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBzcCGuZlUTVitS2T1c8Zcx7rRCtW9kBMhxnLm0edZ4WmU4s-thx7d-7a6klSeLhHNV-EnSMSFTg-ACo6pJVPRCcxcCpnNhNA0mBEpYJnPZJp1TD6f0z6e7eA7G1vZcVL8GJ8sdS9IiqIdCFT1B2lsAtH1qTt6IPGSDaYwCcX3AsyKoLyO-8DbB4zYSaI2G6DHnl7TcaB_sx-jMobHORj9z1czG9q-2FrNwVl93YjnAhgpDBDaBe-EzlJdtOztC1w4ueZ1zwoFoKQg");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2">
+<span class="material-symbols-outlined text-white text-lg">play_circle</span>
+</div>
+</div>
+<p class="text-xs font-medium text-slate-900 dark:text-white truncate">Cyberpunk: Edgerunners</p>
+</div>
+<!-- Item 2 -->
+<div class="snap-start shrink-0 w-32 flex flex-col gap-2">
+<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden bg-slate-800 shadow-lg group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Neon Genesis Evangelion minimalist poster" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB83BqtUusW8SoFQqP8PTjIYVGxe7XblGbEVZAkp0Etkh0fHGJuo-kiu-eNMKfu1jicrB17aRP9Fkd3FqyVNP1kALRI8u5CxUuKvdNcrGq8SIC5WWtTmrLMimhJ8NOyozPaU-iol6CfxJ8bc0sgPfd8oBAVly8jgIEQFAiDkMNS2EtcnJQhwtc-xtExQRvfz0seoiuFfU_c7odlUZIhF5VhYoZUxsguQr1lmKqcacsLbIaoWllZX5o_RX2dsIOSFOYmuBH7YtdWGqQ");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2">
+<span class="material-symbols-outlined text-white text-lg">play_circle</span>
+</div>
+</div>
+<p class="text-xs font-medium text-slate-900 dark:text-white truncate">Neon Genesis</p>
+</div>
+<!-- Item 3 -->
+<div class="snap-start shrink-0 w-32 flex flex-col gap-2">
+<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden bg-slate-800 shadow-lg group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Your Name anime sky poster" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD1V3NdXvmTWVTmJC-tlK4fdup7-24TgwiJzlT2B-eE351NzMif-xM3EqTnpw4y0K9RVT4vopw8TZE7jOuwdS3NHdU2k9-888InK1EDOfQhPNs52-fycOvCrwwotTyQjs0E3d4ga8LlZPI9vy-y0EzPKBn_kEkA9sTjM6p5cMlufTpW79ravYSdIKrlFMbykMQDViqj7ROA_q_7dMwjv2Sf7QPIn6dTB_OZAwCsAhkZg6yXl1A7ncc4DHHwdglC6Tuz8a8x4d5s82Q");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2">
+<span class="material-symbols-outlined text-white text-lg">play_circle</span>
+</div>
+</div>
+<p class="text-xs font-medium text-slate-900 dark:text-white truncate">Your Name</p>
+</div>
+<!-- Item 4 -->
+<div class="snap-start shrink-0 w-32 flex flex-col gap-2">
+<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden bg-slate-800 shadow-lg group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Akira movie poster concept" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC10mOLsqPjCanvhXyYleSZdT7dRVKnc0_CEnk5wVzezp-0BqK3K-5vEB762HvV0kvmdCiJ7h4CNk1cMv_SukbJGoZDR3NJDtWSw4GTy3dHhigIbCGEpzNM4XvP9kwmLUsUzcX6LLLpm3skF6qme_kMZV_Dkps54KR4e-xNqhGGCRDPaLF53aTEsww1LbIt-VPhI-D3D2Iyce1ZmLbi-0aCaVznpAB6mD5lJytkWIAtDFR8v_sWCxZIsSDdOH3AnRAPoxLKUisbu2M");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2">
+<span class="material-symbols-outlined text-white text-lg">play_circle</span>
+</div>
+</div>
+<p class="text-xs font-medium text-slate-900 dark:text-white truncate">Akira</p>
+</div>
+</div>
+</div>
+<!-- Active Collections Section -->
+<div class="flex flex-col px-4">
+<div class="flex items-center justify-between pb-3">
+<h2 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Active Collections</h2>
+<button class="bg-primary/10 hover:bg-primary/20 text-primary p-1 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Collection Card 1 -->
+<div class="flex items-center gap-3 p-2 pr-4 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="h-16 w-16 rounded-lg bg-cover bg-center shrink-0" data-alt="Lo-fi city night aesthetic image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDoq_YHGum9L3OnsPIqBSbEC-jHxqWBifn0zsLkfMEkksobK7e9QCIQSKOUYcor-KTfgG7wVnYRklwxPIl7UvPZdZSvWMSD0KspOiodkAVVqd69FKR5QGg978pQU0ybbdXMZnUSz76YmfBVpm5s7RXIxAnO1uDHFVdpa52a9y_bq7kP8Nh2-Q9jTXAP-YHYZHn-gvRpcWqIF5IUPhv_gDoi4gy9AGQdvCBbzNGX-eIBaZUmWqTtRwzv3DW4hHAwGWuQHuiapf73f-k");'></div>
+<div class="flex flex-col flex-1 min-w-0">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">Chill Lofi OSTs</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">14 tracks • Updated yesterday</p>
+</div>
+<div class="flex items-center justify-center h-8 w-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-400 dark:text-slate-400">
+<span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Collection Card 2 -->
+<div class="flex items-center gap-3 p-2 pr-4 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="h-16 w-16 rounded-lg bg-cover bg-center shrink-0" data-alt="Abstract katana sword flash art" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjLodJ7czmXZrPP9CdQYPW04PLQcrbNYHzXI172vlH60LEensU0mHq-GWM_VMNUk_Z6ZMntCTan5XyH7HH1G8drtyE-B0cbacG66w27hFaISlKjHmzEg7J4LreQh1-GJybrgMPLvL1DbwDjdDmii-CLX3-6w2qalSNbLGT0TCoidTBvRJxL0jMG0xpfrCeUIzfxgdU_z-u9XBWU_UTpiISxo_ee_2jNpmPiiwNrRubFmvcW1VSCOsaUivRGl8OvCIpxw63L9zjrmg");'></div>
+<div class="flex flex-col flex-1 min-w-0">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">Epic Sword Fights</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">8 scenes • 2.4k views</p>
+</div>
+<div class="flex items-center justify-center h-8 w-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-400 dark:text-slate-400">
+<span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Collection Card 3 -->
+<div class="flex items-center gap-3 p-2 pr-4 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="h-16 w-16 rounded-lg bg-cover bg-center shrink-0" data-alt="Dark silhouette of a mystery character" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDH-alU7mneJUAonTu3C4BRQhvplEcPwyKkk0PZ6xPAhPi9zXYinRibDJAd2H-eJmIX6vP4vJ8m0SYYXSQSsY07Xuvi0LGH_hADkGDDfpZu43uK7-Kg4vYPAhI9TT_X_XZJN13mGaCa8j7kjH1hUhM3xqRZe_PCbzoE0stAh4U2M_grPVq4twFbO1uk0YBkCO5XHVBdDn51XIjdGTyyxVq-Ryqk8bvQ3C82g9zKrKcgS-u6rsAHUaM2AKDtd5J296k4BBHn3zbfjgQ");'></div>
+<div class="flex flex-col flex-1 min-w-0">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">Mystery Characters</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">25 profiles • Private</p>
+</div>
+<div class="flex items-center justify-center h-8 w-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-400 dark:text-slate-400">
+<span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

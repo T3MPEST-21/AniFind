@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mood Discovery Hub - AniFind</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#38e07b",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#122017",
+                        "surface-dark": "#1a2c22", // A slightly lighter dark for cards
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        'glow-primary': '0 0 20px -5px rgba(56, 224, 123, 0.3)',
+                        'glow-red': '0 0 25px -5px rgba(239, 68, 68, 0.4)',
+                        'glow-blue': '0 0 25px -5px rgba(59, 130, 246, 0.4)',
+                        'glow-pink': '0 0 25px -5px rgba(236, 72, 153, 0.4)',
+                        'glow-teal': '0 0 25px -5px rgba(20, 184, 166, 0.4)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-background-dark">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark pb-24">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-transparent dark:border-white/5 transition-all duration-300">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 28px;">play_circle</span>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">AniFind</h1>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 24px;">search</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col w-full">
+<!-- Headline -->
+<section class="px-6 pt-6 pb-4">
+<h2 class="text-[2rem] font-extrabold leading-[1.1] tracking-tight text-slate-900 dark:text-white">
+                    How are you <br/>
+<span class="text-primary">feeling today?</span>
+</h2>
+<p class="mt-2 text-sm text-slate-500 dark:text-slate-400 font-medium">Dive into scenes that match your vibe.</p>
+</section>
+<!-- Mood Grid (Hero) -->
+<section class="px-6 py-2">
+<div class="grid grid-cols-2 gap-4">
+<!-- HYPE CARD -->
+<div class="group relative aspect-[4/5] overflow-hidden rounded-2xl cursor-pointer shadow-glow-red hover:scale-[1.02] transition-transform duration-300">
+<!-- Background Image -->
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Intense fiery battle scene explosions red" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDDE8XuIKfWLMsgPlFcqkK0otNTMDMtmuCgnUYIq8ZGwxWD_jGTQGheOFmH5HgBXmCFd9MhaLDiJFWUmxLjdKSk9Fhjm-aYB5Sz7RWfongjPAFv0gJUvnxhgMcqzNtsJ7rjk2EDSQOBvqxzQMG2hOFc7oR5THvMx9jyEIcENAPINFfoOMTeQJ7qZEfY6hm9kssNWI10CzAU6N2s4PQ1SL875gg0lxaWbbThYwSMJF9dG2BaZ1hevn6G8bgkcFBVcsBtajiHfupzbDI');">
+</div>
+<!-- Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-red-900/90 via-red-900/20 to-transparent"></div>
+<!-- Content -->
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-red-200 text-sm">local_fire_department</span>
+<span class="text-xs font-bold text-red-200 uppercase tracking-wider">Adrenaline</span>
+</div>
+<h3 class="text-2xl font-black text-white leading-none">HYPE</h3>
+</div>
+</div>
+<!-- SAD CARD -->
+<div class="group relative aspect-[4/5] overflow-hidden rounded-2xl cursor-pointer shadow-glow-blue hover:scale-[1.02] transition-transform duration-300">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Rainy window pane city lights night blur" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZSLUceBHqDOqPEsfHopq5euchDtRMap0FMra--IRM5i8iG282lzR1TIgqGsE7f_NJN3dsx7bnZx8qpCmp5kPM4EVA7ps-cnuiU28a6NFN6VdXEIxZ9yXUBigZEBstrIc7R5vGaqu4fWzg4ciKzPYteHlzpO_ZC_wcuKskwdhX8gNfShS-M5Ze2K6PxCvJ5FbtOiVbEAbUa4-MNqmSSnTS9Lum6T4ug9XJDVxbkoiGc4oITt-jgSMH9S1LRabL6bzZr7V7ND0wyL4');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-blue-200 text-sm">water_drop</span>
+<span class="text-xs font-bold text-blue-200 uppercase tracking-wider">Melancholy</span>
+</div>
+<h3 class="text-2xl font-black text-white leading-none">FEELS</h3>
+</div>
+</div>
+<!-- ROMANCE CARD -->
+<div class="group relative aspect-[4/5] overflow-hidden rounded-2xl cursor-pointer shadow-glow-pink hover:scale-[1.02] transition-transform duration-300">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Pink cherry blossoms spring flowers soft focus" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdQ7N7AgayVwy-OqkHYm7i2nwxm9X987kgr1er66TmrvGDvXYJb3DxAXo8Tw4du6OhDA7EmvJ_omlkz5BSogheM--ggfpiDMUmPvWCFRQFzNE9ZPBOAD0idOgcZNyjMrQKo3bwbKlJCjM2Or3E6ejMLr8VnXQdxrMzJVsz2F04Xj-RZxDIK173br2Ego5rdn3SaxO53rj6zGaMWRXqqlIn3_u9rC6BRor-vGiJQ7IFk9gD6FRhT5XIPJB7ORmhWNPq3R8Eb4FUWOI');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-pink-900/90 via-pink-900/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-pink-200 text-sm">favorite</span>
+<span class="text-xs font-bold text-pink-200 uppercase tracking-wider">Romance</span>
+</div>
+<h3 class="text-2xl font-black text-white leading-none">LOVE</h3>
+</div>
+</div>
+<!-- CHILL CARD -->
+<div class="group relative aspect-[4/5] overflow-hidden rounded-2xl cursor-pointer shadow-glow-teal hover:scale-[1.02] transition-transform duration-300">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Serene nature forest green leaves quiet" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCRv5GRvJUQzAZllmW9XWWZv-RRjERqhZyg2HRxjuRCRT3iilPQ2qdKCyfjLTw4wXUzO7bKhvNV05cQUHBNZHoPVva0vZjkKKbmgNFKsgXvZWklErpE2noIEauf3rgDNY3xX5GmxopAYm8zzlBvFlB9CllViYvcsueHW5BChzvNPXwD5jO5Mxa33AvD7Ull7YHNQXxy68J1Ww8lfKvAIQs84zefF6moTL9SjcnlYWjmGEDSsvBScTJDOux-wWpxHyc_-gA3p27d0vg');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-teal-900/90 via-teal-900/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-teal-200 text-sm">self_improvement</span>
+<span class="text-xs font-bold text-teal-200 uppercase tracking-wider">Relaxing</span>
+</div>
+<h3 class="text-2xl font-black text-white leading-none">CHILL</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Curated Section -->
+<section class="mt-8">
+<div class="flex items-center justify-between px-6 mb-4">
+<div>
+<h2 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Curated for your <span class="text-primary">Hype</span> mood</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400">Based on recent searches</p>
+</div>
+<button class="text-primary text-sm font-bold flex items-center hover:opacity-80">
+                        See All <span class="material-symbols-outlined text-base ml-0.5">chevron_right</span>
+</button>
+</div>
+<div class="flex overflow-x-auto no-scrollbar pb-6 px-6 gap-4 snap-x snap-mandatory">
+<!-- Scene Card 1 -->
+<div class="flex-none w-[280px] snap-center group cursor-pointer">
+<div class="relative w-full aspect-video rounded-xl overflow-hidden mb-3 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Abstract dynamic book pages flying magic" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTTlFzlbKhzDjVxBxhIU3MX27EWfD4dLA85U38E3tNoWPO5y276rOaz5FspkUOg8f4rZFUS4VGfWAzJtcXZn-mc7ytK9nRuPdwM06JtfO84ZEMTuEszd9nT_DELjWhfz2cBNTb60tPQ_y05ImSfk0QxMJCW72e2G1wfgX_pKwMXiF1BWqkGf2j8cHDif_Qnj4WIz2ttr_wTeWCMR1frTsF1vV1aHhjgUbc4rhBMKcfgSL4R9e-1LtMlWNAmyxNlZxZCTGUNEDgPtU');"></div>
+<!-- Play Overlay -->
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-10 h-10 rounded-full bg-primary/90 flex items-center justify-center backdrop-blur-sm">
+<span class="material-symbols-outlined text-background-dark">play_arrow</span>
+</div>
+</div>
+<div class="absolute top-2 right-2 px-2 py-0.5 bg-background-dark/80 backdrop-blur-md rounded-full border border-white/10">
+<span class="text-[10px] font-bold text-primary">98% Match</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-white line-clamp-1 group-hover:text-primary transition-colors">Hinokami Kagura</h4>
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+<span class="bg-slate-200 dark:bg-white/10 px-1.5 py-0.5 rounded text-[10px] font-medium text-slate-700 dark:text-slate-300">S1:E19</span>
+<span>•</span>
+<span>Demon Slayer</span>
+</div>
+</div>
+</div>
+<!-- Scene Card 2 -->
+<div class="flex-none w-[280px] snap-center group cursor-pointer">
+<div class="relative w-full aspect-video rounded-xl overflow-hidden mb-3 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Purple energy abstract swirl magic power" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDq_Q0eZuQ-HVoiMEj6RpSTX1tL0NKhx3-ufTLUYoQnxzD_ezQbdNDYhv-DL29GRgmOIKPVELCqJmgXvccwUqeoppvI6Bal_C95NJl0qMio4RYAnwgOKCnnAI61WzhmUEaCXzy_NA74Na5_k8U99DNswu6ScGlYCaBQlpCJYRGQSWFVqlUfv0MVa8NB8EI6fxhvEC-f6jL0WbBzvGuyMgFqVcMMysNEcpBX1pL_js9khNg0P_RM2W0DjJnZUBeNThBLUArQtaJhM60');"></div>
+<div class="absolute top-2 right-2 px-2 py-0.5 bg-background-dark/80 backdrop-blur-md rounded-full border border-white/10">
+<span class="text-[10px] font-bold text-primary">95% Match</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-white line-clamp-1 group-hover:text-primary transition-colors">Hollow Purple</h4>
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+<span class="bg-slate-200 dark:bg-white/10 px-1.5 py-0.5 rounded text-[10px] font-medium text-slate-700 dark:text-slate-300">S2:E20</span>
+<span>•</span>
+<span>Jujutsu Kaisen</span>
+</div>
+</div>
+</div>
+<!-- Scene Card 3 -->
+<div class="flex-none w-[280px] snap-center group cursor-pointer">
+<div class="relative w-full aspect-video rounded-xl overflow-hidden mb-3 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Bright flash of light impact punch" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC3evVjaRR3CZgCW1ROtKRtkeNioaLBcA9_tHHdXZSJts6ZtEvVQ_oZOWmE-xrI2QdVqw1nJaPJCE6-hG3uU70uSWdxB9PzaDWI4CKrRURXtQiWxAZEf5sFa_DhxNylN1RJltNzvvEfpFfXdJlp9jwiwa35imBIzN-cMBP6yjnXLL2z6OMHmRP7vIAcRDC8XPz5b8-J2IIC-V8GmzQ2RyCTksM7pCUqOUwph-RlRWIJnZf9tSpCTDRL8ilkFzK7wa8xLlqbAxOtIGI');"></div>
+<div class="absolute top-2 right-2 px-2 py-0.5 bg-background-dark/80 backdrop-blur-md rounded-full border border-white/10">
+<span class="text-[10px] font-bold text-primary">92% Match</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-white line-clamp-1 group-hover:text-primary transition-colors">United States of Smash</h4>
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+<span class="bg-slate-200 dark:bg-white/10 px-1.5 py-0.5 rounded text-[10px] font-medium text-slate-700 dark:text-slate-300">S3:E49</span>
+<span>•</span>
+<span>My Hero Academia</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="h-10"></div>
+</main>
+<!-- Floating Bottom Navigation -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-auto">
+<nav class="flex items-center gap-1 p-1.5 rounded-full bg-surface-dark/90 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/50">
+<a class="relative flex items-center justify-center w-12 h-12 rounded-full text-slate-400 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="sr-only">Home</span>
+</a>
+<a class="relative flex items-center justify-center w-12 h-12 rounded-full bg-primary text-background-dark shadow-glow-primary transition-all" href="#">
+<span class="material-symbols-outlined font-bold">explore</span>
+<span class="sr-only">Discover</span>
+</a>
+<a class="relative flex items-center justify-center w-12 h-12 rounded-full text-slate-400 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="sr-only">Library</span>
+</a>
+<a class="relative flex items-center justify-center w-12 h-12 rounded-full text-slate-400 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="sr-only">Profile</span>
+</a>
+</nav>
+</div>
+</div>
+</body></html>

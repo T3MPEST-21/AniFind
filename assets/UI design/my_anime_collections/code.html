@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniFind - My Collections</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#dc1860",
+                        "background-light": "#fafafa",
+                        "background-dark": "#1c1d21",
+                        "surface": "#2D2E32",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-nav {
+            background: rgba(45, 46, 50, 0.8);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(220, 24, 96, 0.2);
+        }
+        .bento-glow {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+        .text-shadow-magenta {
+            text-shadow: 0 0 8px rgba(220, 24, 96, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-30 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-5 flex items-center justify-between border-b border-slate-200 dark:border-white/5">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary text-2xl">grid_view</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tighter uppercase">Archives</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="size-10 flex items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar with anime aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSJjJrPeK3OpjgSQhQRV5xiHC2bV8gpl1qAKD1ZZi_I9rWLRY2IO5n0tHdHkFxHPmZnHsdanyUjuuQJsKJjlLKh2sXv_xIngQmgq4XDA9gIR2hLxW3kw2axB0JyzUDGe0uk6ledBnfX6vPMPTsONcA8EtbYElb1y7C6BqcbUEucBMdjKNU-oC93Lf58t-5wEwBWMPcAUxXuV8sUNA9krb789__Kn5SV_dZ9LlgcEqCNIkeV5Vn0xs6OiRu_Ev-x_Q3UYpzVSOWlj4"/>
+</div>
+</div>
+</header>
+<!-- Category Tabs -->
+<nav class="px-6 py-4 overflow-x-auto">
+<div class="flex gap-6 border-b border-slate-200 dark:border-white/5">
+<a class="pb-3 border-b-2 border-primary text-primary font-bold text-sm uppercase tracking-widest" href="#">
+                Collections
+            </a>
+<a class="pb-3 border-b-2 border-transparent text-slate-500 dark:text-slate-400 font-bold text-sm uppercase tracking-widest hover:text-primary transition-colors" href="#">
+                Recents
+            </a>
+<a class="pb-3 border-b-2 border-transparent text-slate-500 dark:text-slate-400 font-bold text-sm uppercase tracking-widest hover:text-primary transition-colors" href="#">
+                Identified
+            </a>
+</div>
+</nav>
+<!-- Bento Grid Collections -->
+<main class="flex-1 px-6 py-4 overflow-y-auto pb-32">
+<div class="grid grid-cols-2 gap-4">
+<!-- Featured Large Card -->
+<div class="col-span-2 relative aspect-[16/10] rounded-xl overflow-hidden bento-glow group border border-white/5">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="High contrast dynamic anime fight scene with sparks" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(28,29,33,0.9) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGAYKt0biUWJmEHYn3YETDrSd4rjv9tO2wcfNUOk1gKR_ikpd4qKX4LA0PgodBFzE53TL1Vsj0QipqLe5rxKEl9Q81lCFZjzY1pV3hFqbhBO1dMc2RNUGafGJmcR9Tq0XlsOyMRX77yl_wsA2wh8wVaM1ddw0OTVdUvH19sjetSFaLJEsMjBezGwtU5RlTbYtMu_dktXUZxfZJyvZ20zlKDDJuODoQ5XRuAFb9eb3bvF98Stx_5bLj2cPv-vCltMmae7IlXEiF1ck');">
+</div>
+<div class="absolute bottom-0 left-0 p-5 w-full">
+<div class="flex justify-between items-end">
+<div>
+<span class="inline-block px-2 py-1 bg-primary text-[10px] font-bold uppercase tracking-tighter rounded-sm mb-2">High Energy</span>
+<h3 class="text-xl font-bold tracking-tight uppercase leading-none">Peak Anime Fights</h3>
+<p class="text-xs text-slate-400 mt-1 uppercase tracking-widest">24 Sequences • Updated 2h ago</p>
+</div>
+<span class="material-symbols-outlined text-primary text-shadow-magenta">bolt</span>
+</div>
+</div>
+</div>
+<!-- Medium Card 1 -->
+<div class="relative aspect-square rounded-xl overflow-hidden bento-glow group border border-white/5">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Moody dark toned anime villain in a doorway" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(28,29,33,0.95) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCxcHtT1sr1oraBIsI0K4Sm7LUvMVs1EfhXQheUyXBr1LuhyjEQW_fCPv77ylQNzErZcWF35-PwzQ4LVs2VJ9KLTvNIk152_IqAUPIbXjDok02YrZnwPB72MObeWkxVFEFMR5FqSB-74m2XPvkSNvyq8cuQnThapDnqvWkEVgq0JgAulkYqryyFv4YN3EYJA9__dcWWGt8DRU6mDf9hQHGrv-9JGiN1zXsCiYXUhC5DItd4RZXec3c36IYNwDvbaf9HZlvtWp_cy2M');">
+</div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<h3 class="text-sm font-bold tracking-tight uppercase leading-tight">Cold Villain Entrances</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="size-1 rounded-full bg-primary"></span>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest">12 Clips</p>
+</div>
+</div>
+</div>
+<!-- Medium Card 2 -->
+<div class="relative aspect-square rounded-xl overflow-hidden bento-glow group border border-white/5">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Minimalist anime landscape with digital waveform overlay" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(28,29,33,0.95) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDt3zasG7SP4eKNd84MqKBuUXLZsJPmOnsgNQYijjogtlge5bXnR8LmGmYqItj8Q5NxNyyldT7Tl1AIB9smxWWGCwAh-P7cFxdrJIeYy7TAh7pitfyqxmMrYxQe-LSW2v5BvW62pl73yhkpp0itPH4mPvg8-B_lNYaY0JnovtQbiDflxNZVD6hjwxuJLEbedgQ3zB-lP5fU9qo5uaQyRjYnOOrrDnXMzWVBojNItUcID5yHOG9sLJTpEBCOh6Q1DlCSdGdgezRA_cE');">
+</div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<h3 class="text-sm font-bold tracking-tight uppercase leading-tight">Saved OSTs</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="size-1 rounded-full bg-primary"></span>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest">48 Tracks</p>
+</div>
+</div>
+</div>
+<!-- Medium Card 3 -->
+<div class="relative aspect-square rounded-xl overflow-hidden bento-glow group border border-white/5">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Emotional anime character silhouette against sunset" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(28,29,33,0.95) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXWDsJV_B7QN-SKzQJ7kZcFCrStsCXwYh7LAlGfE0k3yIas1bEX8D8XA2a7UqqCQWm76iLThqRXSS2DxTn_ADN_XwzC9lmq5jku9DjoJnH-vtKaAv7mY-JW4fj9Z0ssr1byfBO9Cw7xxfiAwk90DY-DbLJH2INdhP0Ynp3CQfWNUz9JAw9yfMmBxh3Ik0aplBJMMawwvvs9jwP6AWV0LfJ1tqiPhWcyrhn0FC9ZpaUpzuLKGeCSiBowK0mgtgtfr9HK8ID-5o8Z98');">
+</div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<h3 class="text-sm font-bold tracking-tight uppercase leading-tight">Emotional Beats</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="size-1 rounded-full bg-primary"></span>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest">8 Clips</p>
+</div>
+</div>
+</div>
+<!-- Add New Placeholder -->
+<div class="relative aspect-square rounded-xl border-2 border-dashed border-slate-700 dark:border-white/10 flex flex-col items-center justify-center gap-2 group hover:border-primary/50 transition-colors">
+<div class="size-10 rounded-full bg-slate-800 dark:bg-white/5 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">add</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 group-hover:text-primary transition-colors">New Archive</p>
+</div>
+</div>
+</main>
+<!-- FAB -->
+<div class="fixed bottom-24 right-6 z-40">
+<button class="size-14 rounded-full bg-primary text-white shadow-[0_0_20px_rgba(220,24,96,0.5)] flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 px-6 pb-8 pt-2">
+<div class="glass-nav rounded-2xl h-16 flex items-center justify-around px-2 border border-white/10">
+<a class="flex flex-col items-center gap-0.5 text-slate-400" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Discover</span>
+</a>
+<a class="flex flex-col items-center gap-0.5 text-slate-400" href="#">
+<span class="material-symbols-outlined">center_focus_strong</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Identify</span>
+</a>
+<a class="flex flex-col items-center gap-0.5 text-primary text-shadow-magenta" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">folder_special</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Archives</span>
+</a>
+<a class="flex flex-col items-center gap-0.5 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Profile</span>
+</a>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniFind - Audio Search</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00aaff",
+                        "accent": "#AA00FF",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#121416",
+                        "surface-dark": "#1a1d21",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #232529 1px, transparent 1px), linear-gradient(to bottom, #232529 1px, transparent 1px)",
+                        'radial-glow': "radial-gradient(circle at center, rgba(0, 170, 255, 0.15) 0%, rgba(18, 20, 22, 0) 70%)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom utilities for visualizer rings since we can't add custom keyframes */
+        .ring-layer-1 { box-shadow: 0 0 0 1px rgba(0, 170, 255, 0.3); }
+        .ring-layer-2 { box-shadow: 0 0 0 1px rgba(0, 170, 255, 0.15); }
+        .ring-layer-3 { box-shadow: 0 0 0 1px rgba(0, 170, 255, 0.05); }
+        
+        /* Hide scrollbar for cleaner UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col selection:bg-primary selection:text-white overflow-hidden relative">
+<!-- Ambient Background Effects -->
+<div class="fixed inset-0 z-0 bg-[size:40px_40px] bg-grid-pattern opacity-20 pointer-events-none"></div>
+<div class="fixed inset-0 z-0 bg-radial-glow pointer-events-none"></div>
+<!-- Top Navigation -->
+<header class="relative z-20 flex items-center justify-between p-6">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 active:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white" style="font-size: 24px;">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight text-white/90">AUDIO SEARCH</h1>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 active:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white/80" style="font-size: 24px;">history</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="relative z-10 flex-1 flex flex-col items-center justify-center w-full max-w-md mx-auto px-6 pb-20">
+<!-- Central Interaction Hub -->
+<div class="relative flex items-center justify-center mb-12">
+<!-- Decorative Visualizer Rings (Static representation of pulse) -->
+<div class="absolute w-[320px] h-[320px] rounded-full border border-primary/10 opacity-40"></div>
+<div class="absolute w-[440px] h-[440px] rounded-full border border-primary/5 opacity-20 border-dashed"></div>
+<!-- Inner Glowing Rings -->
+<div class="absolute inset-0 m-auto w-64 h-64 rounded-full ring-layer-3"></div>
+<div class="absolute inset-0 m-auto w-52 h-52 rounded-full ring-layer-2"></div>
+<!-- Main Button -->
+<button class="group relative flex items-center justify-center w-40 h-40 rounded-full bg-surface-dark border-2 border-primary shadow-[0_0_50px_-10px_rgba(0,170,255,0.6)] active:scale-95 transition-all duration-300">
+<!-- Inner glow effect -->
+<div class="absolute inset-0 rounded-full bg-primary/10 blur-md group-hover:bg-primary/20 transition-colors"></div>
+<span class="material-symbols-outlined text-primary z-10 group-hover:text-white transition-colors" style="font-size: 48px;">mic</span>
+<!-- Tiny tech details inside button -->
+<div class="absolute bottom-8 text-[10px] text-primary/60 font-mono tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">REC</div>
+</button>
+</div>
+<!-- Instructional Text -->
+<div class="text-center space-y-6">
+<h2 class="text-2xl font-bold tracking-widest text-white uppercase drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">Tap to Listen</h2>
+<p class="text-white/40 text-sm max-w-[200px] mx-auto leading-relaxed">
+                Identify scenes, OSTs, and character voices instantly.
+            </p>
+<!-- Secondary Action Button -->
+<button class="mt-4 flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-accent/50 text-accent hover:bg-accent/10 active:bg-accent/20 transition-all mx-auto w-full max-w-[240px]">
+<span class="material-symbols-outlined" style="font-size: 20px;">upload_file</span>
+<span class="text-sm font-semibold tracking-wide">Upload Audio File</span>
+</button>
+</div>
+</main>
+<!-- Bottom Sheet / Recent Items -->
+<section class="relative z-20 w-full bg-surface-dark/80 backdrop-blur-xl border-t border-white/5 pb-8 pt-6 rounded-t-3xl">
+<div class="flex items-center justify-between px-6 mb-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-white/80">Recently Identified</h3>
+<span class="text-xs text-primary font-mono cursor-pointer hover:underline">VIEW ALL</span>
+</div>
+<!-- Horizontal Scroll Container -->
+<div class="flex overflow-x-auto no-scrollbar gap-4 px-6 pb-2 w-full snap-x snap-mandatory">
+<!-- Card 1 -->
+<div class="snap-start shrink-0 w-[240px] bg-background-dark border border-white/5 rounded-xl overflow-hidden group hover:border-primary/50 transition-colors cursor-pointer">
+<div class="relative h-32 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent z-10 opacity-80"></div>
+<img alt="Abstract blue sky with clouds representing Naruto Shippuden vibe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiTaVcY7gVvqgg0fZetI924Lum2DQInxzqmQSH7deklATpUsQoqGcefGNhUvXEnh72DedRRToB19jHeqEazv8WX7ZPOXtrLb3IyeE2yfcPM5XexJL3qN4DsTVNBI37LLQSEU4PZ-8LEW8tjBl_jtMvKPKxM_aKgK3AaeN0tmPg2X08ZtzV_iDp2wr4XMcgTFJqUD78kcHCjiK1d7JdCwl5kh6ze38ASppiqtBxMSEQXIYkVuEXU49ib1ERVkJrQSvBnfiziKZcZBk"/>
+<div class="absolute bottom-2 left-3 z-20">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-primary text-background-dark">98% MATCH</span>
+</div>
+</div>
+<div class="p-3">
+<h4 class="text-white font-bold text-lg leading-tight truncate">Blue Bird</h4>
+<p class="text-white/50 text-xs mt-1 truncate">Naruto Shippuden • Ikimonogakari</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="snap-start shrink-0 w-[240px] bg-background-dark border border-white/5 rounded-xl overflow-hidden group hover:border-accent/50 transition-colors cursor-pointer">
+<div class="relative h-32 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent z-10 opacity-80"></div>
+<img alt="Abstract noir jazz cityscape representing Cowboy Bebop vibe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJADlC7iuPt-8iz6rmIo-Lf0GmsyO2HpFiliwO4TfpC7bwL3c1kU2EsCoRTyu5mF76kGgxW-yDDoHT2hsEaLnruL7qRJIp9uYJvcZb-hnFRd3CpRS7Zn2wLVJbESGe7MBKxHLbbk-bKrhU2E7I0n4ddqG6QZJorfiHYE0TTSbHQrbTsKU6yEVjp7-YH8_L5KgtUE6W0gJixUCRrn5YhetJXdSoXUMVaR0oY9KBfcPYMiEKEyRpXUwbaMMDXeXr75yRUTFk72SYhWo"/>
+<div class="absolute bottom-2 left-3 z-20">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-accent text-white">OST</span>
+</div>
+</div>
+<div class="p-3">
+<h4 class="text-white font-bold text-lg leading-tight truncate">Tank!</h4>
+<p class="text-white/50 text-xs mt-1 truncate">Cowboy Bebop • The Seatbelts</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="snap-start shrink-0 w-[240px] bg-background-dark border border-white/5 rounded-xl overflow-hidden group hover:border-primary/50 transition-colors cursor-pointer">
+<div class="relative h-32 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent z-10 opacity-80"></div>
+<img alt="Dark moody storm clouds representing Attack on Titan vibe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyKa6UDE1oveHcNDuK96elb52mvLU3RV2Q68ZZg1EjNUdx0S6f-ehHQbWpen9NbDW2CSMnHx3S-6i747P7e8r8jhVriMZKPYjCy5EEX4kvq4QoVDI-Y5khNIvoidbvhJl3Q6u-xejBsvqnqseeJjCDP_epZ1fjp55vxG0PsCt5fwnvGjY61yt6sqhZFasN6W_g6C7ertLbdcYk246F9IHnfvWsuapsrKs5IMHWdnO-pc3sOM2s22GWHtfEYvv5mSCBGyEREr0oKXc"/>
+<div class="absolute bottom-2 left-3 z-20">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-primary text-background-dark">94% MATCH</span>
+</div>
+</div>
+<div class="p-3">
+<h4 class="text-white font-bold text-lg leading-tight truncate">Vogel im Käfig</h4>
+<p class="text-white/50 text-xs mt-1 truncate">Attack on Titan • Hiroyuki Sawano</p>
+</div>
+</div>
+</div>
+</section>
+</body></html>
