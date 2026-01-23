@@ -48,6 +48,13 @@ export default function ScanScreen() {
 
       if (!result.canceled && result.assets[0].uri) {
         setSelectedImage(result.assets[0].uri);
+
+        // Show guidance alert
+        Alert.alert(
+          "📸 Best Results Tip",
+          "For accurate identification, use screenshots directly from anime episodes. Character art, fan art, or manga panels won't work well.",
+          [{ text: "Got it!", style: "default" }],
+        );
       }
     } catch (error) {
       console.error(error);
@@ -93,8 +100,10 @@ export default function ScanScreen() {
             <Ionicons name="arrow-back" size={24} color="#FFF" />
           </TouchableOpacity>
           <Text style={styles.title}>Crop Image</Text>
-          <TouchableOpacity>
-            <Text style={styles.resetText}>RESET</Text>
+          <TouchableOpacity onPress={handleSearch} disabled={loading}>
+            <Text style={[styles.resetText, loading && { opacity: 0.5 }]}>
+              {loading ? "SEARCHING..." : "IDENTIFY"}
+            </Text>
           </TouchableOpacity>
         </View>
 

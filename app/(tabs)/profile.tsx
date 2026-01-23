@@ -1,5 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { useFocusEffect, useRouter } from "expo-router";
+import { useCallback, useState } from "react";
 import {
     ScrollView,
     StyleSheet,
@@ -10,6 +12,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "../../constants/Colors";
 import { GlobalStyles } from "../../constants/Styles";
+import { HistoryService } from "../../services/history";
+import { TraceMoeResult } from "../../types/trace";
 
 const COLLECTIONS = [
   {
@@ -48,6 +52,17 @@ const COLLECTIONS = [
 ];
 
 export default function ArchivesScreen() {
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState<
+    "COLLECTIONS" | "RECENTS" | "IDENTIFIED"
+  >("COLLECTIONS");
+  const [history, setHistory] = useState<TraceMoeResult[]>([]);
+
+  useFocusEffect(
+    useCallback(() => {
+      HistoryService.getHistory().then(setHistory);
+    }, []),
+  );
   return (
     <SafeAreaView style={GlobalStyles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -83,110 +98,146 @@ export default function ArchivesScreen() {
 
         {/* Tabs */}
         <View style={styles.tabsRow}>
-          <TouchableOpacity style={styles.activeTab}>
-            <Text style={styles.activeTabText}>COLLECTIONS</Text>
-            <View style={styles.activeLine} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.inactiveTab}>
-            <Text style={styles.inactiveTabText}>RECENTS</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.inactiveTab}>
-            <Text style={styles.inactiveTabText}>IDENTIFIED</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Featured Collection */}
-        <TouchableOpacity style={styles.featuredCard} activeOpacity={0.9}>
-          <Image
-            source={{ uri: COLLECTIONS[0].image }}
-            style={styles.featuredImage}
-            contentFit="cover"
-          />
-          <View style={styles.overlay} />
-          <View style={styles.featuredContent}>
-            <View style={styles.tagBadge}>
-              <Text style={styles.tagText}>{COLLECTIONS[0].tag}</Text>
-            </View>
-            <Text style={styles.featuredTitle}>{COLLECTIONS[0].title}</Text>
-            <View style={GlobalStyles.row}>
-              <Text style={styles.featuredSubtitle}>
-                {COLLECTIONS[0].subtitle}
+          {["COLLECTIONS", "RECENTS", "IDENTIFIED"].map((tab) => (
+            <TouchableOpacity
+              key={tab}
+              style={activeTab === tab ? styles.activeTab : styles.inactiveTab}
+              onPress={() => setActiveTab(tab as any)}
+            >
+              <Text
+                style={
+                  activeTab === tab
+                    ? styles.activeTabText
+                    : styles.inactiveTabText
+                }
+              >
+                {tab}
               </Text>
-              <Ionicons
-                name="flash"
-                size={16}
-                color={Colors.primary}
-                style={{ marginLeft: "auto" }}
-              />
-            </View>
-          </View>
-        </TouchableOpacity>
-
-        {/* Grid Collections */}
-        <View style={styles.grid}>
-          {/* Card 2 */}
-          <TouchableOpacity style={styles.gridCard} activeOpacity={0.9}>
-            <Image
-              source={{ uri: COLLECTIONS[1].image }}
-              style={styles.gridImage}
-              contentFit="cover"
-            />
-            <View style={styles.overlay} />
-            <View style={styles.gridContent}>
-              <Text style={styles.gridTitle}>COLD VILLAIN{"\n"}ENTRANCES</Text>
-              <View style={GlobalStyles.row}>
-                <View style={styles.dot} />
-                <Text style={styles.gridSubtitle}> 12 CLIPS</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-
-          {/* Card 3 */}
-          <TouchableOpacity style={styles.gridCard} activeOpacity={0.9}>
-            <Image
-              source={{ uri: COLLECTIONS[2].image }}
-              style={styles.gridImage}
-              contentFit="cover"
-            />
-            <View style={styles.overlay} />
-            <View style={styles.gridContent}>
-              <Text style={styles.gridTitle}>SAVED OSTs</Text>
-              <View style={GlobalStyles.row}>
-                <View
-                  style={[styles.dot, { backgroundColor: Colors.primary }]}
-                />
-                <Text style={styles.gridSubtitle}> 48 TRACKS</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-
-          {/* Card 4 */}
-          <TouchableOpacity style={styles.gridCard} activeOpacity={0.9}>
-            <Image
-              source={{ uri: COLLECTIONS[3].image }}
-              style={styles.gridImage}
-              contentFit="cover"
-            />
-            <View style={styles.overlay} />
-            <View style={styles.gridContent}>
-              <Text style={styles.gridTitle}>EMOTIONAL BEATS</Text>
-              <View style={GlobalStyles.row}>
-                <View
-                  style={[styles.dot, { backgroundColor: Colors.primary }]}
-                />
-                <Text style={styles.gridSubtitle}> 8 CLIPS</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-
-          {/* Add New */}
-          <TouchableOpacity style={styles.addCard}>
-            <View style={styles.plusCircle}>
-              <Ionicons name="add" size={32} color="#FFF" />
-            </View>
-            <Text style={styles.addText}>NEW ARCHIVE</Text>
-          </TouchableOpacity>
+              {activeTab === tab && <View style={styles.activeLine} />}
+            </TouchableOpacity>
+          ))}
         </View>
+
+        {activeTab === "COLLECTIONS" && (
+          <>
+            {/* Featured Collection */}
+            <TouchableOpacity style={styles.featuredCard} activeOpacity={0.9}>
+              <Image
+                source={{ uri: COLLECTIONS[0].image }}
+                style={styles.featuredImage}
+                contentFit="cover"
+              />
+              <View style={styles.overlay} />
+              <View style={styles.featuredContent}>
+                <View style={styles.tagBadge}>
+                  <Text style={styles.tagText}>{COLLECTIONS[0].tag}</Text>
+                </View>
+                <Text style={styles.featuredTitle}>{COLLECTIONS[0].title}</Text>
+                <View style={GlobalStyles.row}>
+                  <Text style={styles.featuredSubtitle}>
+                    {COLLECTIONS[0].subtitle}
+                  </Text>
+                  <Ionicons
+                    name="flash"
+                    size={16}
+                    color={Colors.primary}
+                    style={{ marginLeft: "auto" }}
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
+
+            {/* Grid Collections */}
+            <View style={styles.grid}>
+              {COLLECTIONS.slice(1).map((collection) => (
+                <TouchableOpacity
+                  key={collection.id}
+                  style={styles.gridCard}
+                  activeOpacity={0.9}
+                >
+                  <Image
+                    source={{ uri: collection.image }}
+                    style={styles.gridImage}
+                    contentFit="cover"
+                  />
+                  <View style={styles.overlay} />
+                  <View style={styles.gridContent}>
+                    <Text style={styles.gridTitle}>{collection.title}</Text>
+                    <View style={GlobalStyles.row}>
+                      <View
+                        style={[
+                          styles.dot,
+                          !collection.tag && {
+                            backgroundColor: Colors.textSecondary,
+                          },
+                        ]}
+                      />
+                      <Text style={styles.gridSubtitle}>
+                        {" "}
+                        {collection.subtitle}
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              ))}
+
+              {/* Add New */}
+              <TouchableOpacity style={styles.addCard}>
+                <View style={styles.plusCircle}>
+                  <Ionicons name="add" size={32} color="#FFF" />
+                </View>
+                <Text style={styles.addText}>NEW ARCHIVE</Text>
+              </TouchableOpacity>
+            </View>
+          </>
+        )}
+
+        {activeTab === "RECENTS" && (
+          <View style={styles.grid}>
+            {history.length === 0 ? (
+              <Text
+                style={{
+                  color: Colors.textSecondary,
+                  fontStyle: "italic",
+                  width: "100%",
+                  textAlign: "center",
+                  marginTop: 32,
+                }}
+              >
+                No history found.
+              </Text>
+            ) : (
+              history.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.gridCard}
+                  onPress={() => router.push(`/anime/${item.anilist.id}`)}
+                  activeOpacity={0.9}
+                >
+                  <Image
+                    source={{ uri: item.image }}
+                    style={styles.gridImage}
+                    contentFit="cover"
+                  />
+                  <View style={styles.overlay} />
+                  <View style={styles.gridContent}>
+                    <View style={styles.tagBadge}>
+                      <Text style={styles.tagText}>
+                        {(item.similarity * 100).toFixed(0)}% MATCH
+                      </Text>
+                    </View>
+                    <Text style={styles.gridTitle} numberOfLines={2}>
+                      {item.anilist.title.english || item.anilist.title.romaji}
+                    </Text>
+                    <View style={GlobalStyles.row}>
+                      <Text style={styles.gridSubtitle}>EP {item.episode}</Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              ))
+            )}
+          </View>
+        )}
 
         {/* Spacer for Tab Bar */}
         <View style={{ height: 100 }} />

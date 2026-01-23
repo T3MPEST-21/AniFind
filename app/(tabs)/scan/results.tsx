@@ -14,6 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "../../../constants/Colors";
 import { GlobalStyles } from "../../../constants/Styles";
 import { AniListService } from "../../../services/api";
+import { HistoryService } from "../../../services/history";
 import { Anime } from "../../../types/anime";
 import { TraceMoeResult } from "../../../types/trace";
 
@@ -36,13 +37,36 @@ export default function ResultsScreen() {
       try {
         const parsedResults = JSON.parse(
           searchParams.results as string,
-        ) as TraceMoeResult[];
+        ) as any[]; // Raw trace.moe matches
         setResults(parsedResults);
         if (parsedResults.length > 0) {
           setBestMatch(parsedResults[0]);
+
           // Fetch details for best match
-          AniListService.getAnimeDetails(parsedResults[0].anilist.id)
-            .then((data) => setAnimeDetails(data))
+          AniListService.getAnimeDetails(parsedResults[0].anilistId)
+            .then((data) => {
+              setAnimeDetails(data);
+
+              // Save enriched data to history (with anime title info)
+              const enrichedResult: TraceMoeResult = {
+                anilist: {
+                  id: data.id,
+                  title: {
+                    native: data.title.native,
+                    romaji: data.title.romaji,
+                    english: data.title.english || data.title.romaji,
+                  },
+                },
+                filename: parsedResults[0].filename,
+                episode: parsedResults[0].episode,
+                from: 0, // Not available in TraceMoeMatch
+                to: 0, // Not available in TraceMoeMatch
+                similarity: parsedResults[0].similarity,
+                video: parsedResults[0].videoUrl,
+                image: parsedResults[0].imageUrl,
+              };
+              HistoryService.saveScan(enrichedResult);
+            })
             .catch(console.error)
             .finally(() => setLoading(false));
         } else {
@@ -116,11 +140,13 @@ export default function ResultsScreen() {
           </Text>
           <View style={styles.metaRow}>
             <View style={styles.epBadge}>
-              <Text style={styles.epText}>EPISODE {bestMatch.episode}</Text>
+              <Text style={styles.epText}>
+                EPISODE {bestMatch.episode || "N/A"}
+              </Text>
             </View>
             <Ionicons name="time-outline" size={16} color={Colors.secondary} />
             <Text style={styles.timestamp}>
-              {formatTime(bestMatch.from)} / {formatTime(bestMatch.to)}
+              {(bestMatch as any).timestamp || "00:00"}
             </Text>
           </View>
         </View>

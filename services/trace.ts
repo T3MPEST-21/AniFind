@@ -1,4 +1,4 @@
-import { TraceMoeMatch, TraceMoeResult } from "../types/trace";
+import { TraceMoeApiResponse, TraceMoeMatch } from "../types/trace";
 
 const TRACE_MOE_API = "https://api.trace.moe/search";
 
@@ -20,7 +20,7 @@ export const TraceMoeService = {
         },
       });
 
-      const data: TraceMoeResult = await response.json();
+      const data: TraceMoeApiResponse = await response.json();
 
       if (data.error) {
         throw new Error(data.error);

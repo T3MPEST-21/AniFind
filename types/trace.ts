@@ -1,3 +1,20 @@
+// API Response format from trace.moe
+export interface TraceMoeApiResponse {
+  frameCount: number;
+  error?: string;
+  result: {
+    anilist: number;
+    filename: string;
+    episode: number | null;
+    from: number;
+    to: number;
+    similarity: number;
+    video: string;
+    image: string;
+  }[];
+}
+
+// App data model (what we store and use)
 export interface TraceMoeResult {
   anilist: {
     id: number;

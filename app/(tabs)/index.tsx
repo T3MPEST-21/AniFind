@@ -1,8 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { useFocusEffect, useRouter } from "expo-router";
+import { useCallback, useState } from "react";
 import {
+    Alert,
     ScrollView,
     StyleSheet,
     Text,
@@ -14,8 +15,8 @@ import { ActionCard } from "../../components/ActionCard";
 import { PulseItem } from "../../components/PulseItem";
 import { Colors } from "../../constants/Colors";
 import { GlobalStyles } from "../../constants/Styles";
-import { AniListService } from "../../services/api";
-import { Anime } from "../../types/anime";
+import { HistoryService } from "../../services/history";
+import { TraceMoeResult } from "../../types/trace";
 
 // Mock Data for "Trending Pulses" (until we have a real music API)
 const TRENDING_PULSES = [
@@ -41,12 +42,13 @@ const TRENDING_PULSES = [
 
 export default function HomeScreen() {
   const router = useRouter();
-  const [recents, setRecents] = useState<Anime[]>([]);
+  const [recents, setRecents] = useState<TraceMoeResult[]>([]);
 
-  useEffect(() => {
-    // Fetch some "trending" to fill "Recent Sightings" for now
-    AniListService.getTrending(1, 5).then((data) => setRecents(data));
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      HistoryService.getHistory().then(setRecents);
+    }, []),
+  );
 
   return (
     <SafeAreaView style={GlobalStyles.container}>
@@ -108,7 +110,19 @@ export default function HomeScreen() {
               icon="film"
               color={Colors.secondary}
               backgroundColor={Colors.card}
-              onPress={() => router.push("/scan")}
+              onPress={() => {
+                Alert.alert(
+                  "🎬 Video Scene Search",
+                  "Upload a video clip from an anime episode. The app will analyze frames to identify the anime.\n\nTip: Use short clips (3-10 seconds) for faster results.",
+                  [
+                    { text: "Cancel", style: "cancel" },
+                    {
+                      text: "Choose Video",
+                      onPress: () => router.push("/scan"),
+                    }, // Will be video picker
+                  ],
+                );
+              }}
             />
             <ActionCard
               title="Melody"
@@ -135,31 +149,46 @@ export default function HomeScreen() {
           showsHorizontalScrollIndicator={false}
           style={styles.horizontalList}
         >
-          {recents.map((anime, index) => (
-            <TouchableOpacity
-              key={anime.id}
-              style={styles.recentCard}
-              onPress={() => router.push(`/anime/${anime.id}`)}
+          {recents.length === 0 ? (
+            <Text
+              style={{
+                color: Colors.textSecondary,
+                marginLeft: 16,
+                fontStyle: "italic",
+              }}
             >
-              <Image
-                source={{ uri: anime.coverImage.extraLarge }}
-                style={styles.recentImage}
-              />
-              <View style={styles.recentOverlay}>
-                <View style={styles.matchBadge}>
-                  <Text style={styles.matchText}>
-                    {(98 - index * 2.3).toFixed(1)}% MATCH
+              No recent scans found.
+            </Text>
+          ) : (
+            recents
+              .filter((item) => item?.anilist?.title)
+              .map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.recentCard}
+                  onPress={() => router.push(`/anime/${item.anilist.id}`)}
+                >
+                  <Image
+                    source={{ uri: item.image }}
+                    style={styles.recentImage}
+                  />
+                  <View style={styles.recentOverlay}>
+                    <View style={styles.matchBadge}>
+                      <Text style={styles.matchText}>
+                        {(item.similarity * 100).toFixed(0)}% MATCH
+                      </Text>
+                    </View>
+                  </View>
+                  <Text style={styles.recentTitle} numberOfLines={1}>
+                    {item.anilist.title.english || item.anilist.title.romaji}
                   </Text>
-                </View>
-              </View>
-              <Text style={styles.recentTitle} numberOfLines={1}>
-                {anime.title.english || anime.title.romaji}
-              </Text>
-              <Text style={styles.recentSubtitle}>
-                EPISODE {12 - index} • 14:2{index}
-              </Text>
-            </TouchableOpacity>
-          ))}
+                  <Text style={styles.recentSubtitle}>
+                    EPISODE {item.episode} •{" "}
+                    {(item.similarity * 100).toFixed(0)}% CONFIDENCE
+                  </Text>
+                </TouchableOpacity>
+              ))
+          )}
         </ScrollView>
 
         {/* Trending Pulses */}
