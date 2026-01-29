@@ -1,8 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
+import { ResizeMode, Video } from "expo-av";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
-import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect, useRef, useState } from "react";
 import {
     ActivityIndicator,
     Alert,
@@ -12,14 +13,28 @@ import {
     View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { captureRef } from "react-native-view-shot";
 import { Colors } from "../../../constants/Colors";
 import { GlobalStyles } from "../../../constants/Styles";
 import { TraceMoeService } from "../../../services/trace";
 
 export default function ScanScreen() {
   const router = useRouter();
+  const searchParams = useLocalSearchParams();
+  const videoRef = useRef<Video>(null);
+  const videoViewRef = useRef(null); // For capturing the video frame
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [searchMode, setSearchMode] = useState<"image" | "video">("image");
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  // Auto-trigger video picker if mode=video
+  useEffect(() => {
+    if (searchParams.mode === "video") {
+      pickVideo();
+    }
+  }, [searchParams.mode]);
 
   const pickImage = async (useCamera: boolean) => {
     try {
@@ -62,6 +77,41 @@ export default function ScanScreen() {
     }
   };
 
+  const pickVideo = async () => {
+    try {
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert(
+          "Permission required",
+          "Media library access is needed to select videos.",
+        );
+        return;
+      }
+
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+        allowsEditing: false,
+        quality: 0.8,
+      });
+
+      if (!result.canceled && result.assets[0].uri) {
+        setSelectedVideo(result.assets[0].uri);
+        setSearchMode("video");
+
+        // Show guidance alert
+        Alert.alert(
+          "🎬 Video Scene Search",
+          "The app will analyze frames from your video to identify the anime. This may take a moment.",
+          [{ text: "Got it!", style: "default" }],
+        );
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "Failed to pick video");
+    }
+  };
+
   const handleSearch = async () => {
     if (!selectedImage) return;
 
@@ -89,7 +139,7 @@ export default function ScanScreen() {
   };
 
   if (selectedImage) {
-    // CROP IMAGE UI STATE
+    // CROP IMAGE UI STATE (Full Screen)
     return (
       <SafeAreaView style={GlobalStyles.container}>
         <View style={styles.header}>
@@ -100,10 +150,15 @@ export default function ScanScreen() {
             <Ionicons name="arrow-back" size={24} color="#FFF" />
           </TouchableOpacity>
           <Text style={styles.title}>Crop Image</Text>
-          <TouchableOpacity onPress={handleSearch} disabled={loading}>
-            <Text style={[styles.resetText, loading && { opacity: 0.5 }]}>
-              {loading ? "SEARCHING..." : "IDENTIFY"}
-            </Text>
+          <TouchableOpacity onPress={() => setSelectedImage(null)}>
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+            >
+              <Ionicons name="close-circle" size={20} color={Colors.primary} />
+              <Text style={[styles.resetText, { color: Colors.primary }]}>
+                CLEAR
+              </Text>
+            </View>
           </TouchableOpacity>
         </View>
 
@@ -120,7 +175,7 @@ export default function ScanScreen() {
               style={styles.mainImage}
               contentFit="contain"
             />
-            {/* Fake Grid Overlay */}
+            {/* Grid Overlay */}
             <View style={styles.gridOverlay}>
               <View style={styles.gridRow} />
               <View style={styles.gridRow} />
@@ -137,26 +192,7 @@ export default function ScanScreen() {
           </View>
         </View>
 
-        {/* Tools */}
-        <View style={styles.toolsRow}>
-          <View style={styles.tool}>
-            <Ionicons name="refresh" size={24} color={Colors.textSecondary} />
-            <Text style={styles.toolText}>ROTATE</Text>
-          </View>
-          <View style={styles.tool}>
-            <Ionicons name="resize" size={24} color={Colors.textSecondary} />
-            <Text style={styles.toolText}>RATIO</Text>
-          </View>
-          <View style={styles.tool}>
-            <Ionicons
-              name="swap-horizontal"
-              size={24}
-              color={Colors.textSecondary}
-            />
-            <Text style={styles.toolText}>FLIP</Text>
-          </View>
-        </View>
-
+        {/* Identify FAB Button */}
         <TouchableOpacity
           style={styles.identifyButton}
           onPress={handleSearch}
@@ -173,6 +209,149 @@ export default function ScanScreen() {
                 style={{ marginRight: 8 }}
               />
               <Text style={styles.identifyText}>IDENTIFY SCENE</Text>
+            </>
+          )}
+        </TouchableOpacity>
+      </SafeAreaView>
+    );
+  }
+
+  // VIDEO PREVIEW UI STATE (Full Screen)
+  if (selectedVideo) {
+    return (
+      <SafeAreaView style={GlobalStyles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity
+            onPress={() => {
+              setSelectedVideo(null);
+              setSearchMode("image");
+            }}
+            style={styles.backButton}
+          >
+            <Ionicons name="arrow-back" size={24} color="#FFF" />
+          </TouchableOpacity>
+          <Text style={styles.title}>Video Scene</Text>
+          <TouchableOpacity
+            onPress={() => {
+              setSelectedVideo(null);
+              setSearchMode("image");
+            }}
+          >
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+            >
+              <Ionicons name="close-circle" size={20} color={Colors.primary} />
+              <Text style={[styles.resetText, { color: Colors.primary }]}>
+                CLEAR
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.videoContainer}>
+          <View style={styles.tipContainer}>
+            <Text style={styles.tipText}>
+              Pause the video at the scene you want to identify
+            </Text>
+          </View>
+
+          <View style={styles.videoWrapper} ref={videoViewRef}>
+            <Video
+              ref={videoRef}
+              source={{ uri: selectedVideo }}
+              style={styles.video}
+              resizeMode={ResizeMode.CONTAIN}
+              shouldPlay={false}
+              isLooping={false}
+              onPlaybackStatusUpdate={(status) => {
+                if (status.isLoaded) {
+                  setIsVideoPlaying(status.isPlaying);
+                }
+              }}
+            />
+
+            {/* Play/Pause Overlay */}
+            {!isVideoPlaying && (
+              <TouchableOpacity
+                style={styles.playOverlay}
+                onPress={() => videoRef.current?.playAsync()}
+              >
+                <View style={styles.playButton}>
+                  <Ionicons name="play" size={48} color="#FFF" />
+                </View>
+              </TouchableOpacity>
+            )}
+
+            {/* Pause button when playing */}
+            {isVideoPlaying && (
+              <TouchableOpacity
+                style={styles.pauseOverlay}
+                onPress={() => videoRef.current?.pauseAsync()}
+              >
+                <View style={styles.pauseButton}>
+                  <Ionicons name="pause" size={32} color="#FFF" />
+                </View>
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+
+        {/* Capture & Search Button */}
+        <TouchableOpacity
+          style={styles.identifyButton}
+          onPress={async () => {
+            if (!videoViewRef.current) {
+              Alert.alert("Error", "Video not ready");
+              return;
+            }
+
+            setLoading(true);
+            try {
+              // Pause video first to ensure we capture the current frame
+              await videoRef.current?.pauseAsync();
+
+              // Capture the video view as an image
+              const uri = await captureRef(videoViewRef, {
+                format: "jpg",
+                quality: 0.8,
+              });
+
+              // Search the captured frame
+              const results = await TraceMoeService.searchByImage(uri);
+              if (results.length > 0) {
+                // Clear video and navigate to results
+                setSelectedVideo(null);
+                setSearchMode("image");
+
+                // @ts-ignore
+                router.push({
+                  // @ts-ignore
+                  pathname: "/(tabs)/scan/results",
+                  params: { results: JSON.stringify(results), imageUri: uri },
+                });
+              } else {
+                Alert.alert("No results", "No anime found for this frame.");
+              }
+            } catch (error) {
+              console.error("Frame capture error:", error);
+              Alert.alert("Error", "Failed to capture and search frame");
+            } finally {
+              setLoading(false);
+            }
+          }}
+          disabled={loading}
+        >
+          {loading ? (
+            <ActivityIndicator color="#FFF" />
+          ) : (
+            <>
+              <Ionicons
+                name="camera"
+                size={20}
+                color="#FFF"
+                style={{ marginRight: 8 }}
+              />
+              <Text style={styles.identifyText}>CAPTURE & SEARCH</Text>
             </>
           )}
         </TouchableOpacity>
@@ -330,14 +509,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 16,
-    marginBottom: 16,
-    height: 56,
-    borderRadius: 28,
+    marginHorizontal: 24,
+    marginBottom: 24,
+    height: 60,
+    borderRadius: 30,
     shadowColor: Colors.secondary,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.6,
+    shadowRadius: 16,
+    elevation: 12,
   },
   identifyText: {
     color: "#000",
@@ -377,5 +557,56 @@ const styles = StyleSheet.create({
   optionSubtitle: {
     color: Colors.textSecondary,
     fontSize: 14,
+  },
+
+  // Video Player Styles
+  videoContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 24,
+  },
+  videoWrapper: {
+    width: "100%",
+    aspectRatio: 16 / 9,
+    borderRadius: 8,
+    overflow: "hidden",
+    backgroundColor: "#000",
+    position: "relative",
+  },
+  video: {
+    width: "100%",
+    height: "100%",
+  },
+  playOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.3)",
+  },
+  playButton: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: "rgba(249,47,96,0.9)",
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: Colors.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.6,
+    shadowRadius: 12,
+  },
+  pauseOverlay: {
+    position: "absolute",
+    top: 16,
+    right: 16,
+  },
+  pauseButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: "rgba(0,0,0,0.7)",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

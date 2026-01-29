@@ -119,6 +119,7 @@ export default function TabLayout() {
               <Ionicons name="add" size={32} color="#FFF" />
             </CustomTabBarButton>
           ),
+          tabBarStyle: { display: "none" }, // Hide tab bar when on scan screen
         }}
       />
 

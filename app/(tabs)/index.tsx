@@ -3,12 +3,11 @@ import { Image } from "expo-image";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import {
-    Alert,
     ScrollView,
     StyleSheet,
     Text,
     TouchableOpacity,
-    View,
+    View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActionCard } from "../../components/ActionCard";
@@ -110,19 +109,7 @@ export default function HomeScreen() {
               icon="film"
               color={Colors.secondary}
               backgroundColor={Colors.card}
-              onPress={() => {
-                Alert.alert(
-                  "🎬 Video Scene Search",
-                  "Upload a video clip from an anime episode. The app will analyze frames to identify the anime.\n\nTip: Use short clips (3-10 seconds) for faster results.",
-                  [
-                    { text: "Cancel", style: "cancel" },
-                    {
-                      text: "Choose Video",
-                      onPress: () => router.push("/scan"),
-                    }, // Will be video picker
-                  ],
-                );
-              }}
+              onPress={() => router.push("/scan?mode=video")}
             />
             <ActionCard
               title="Melody"
